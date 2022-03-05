@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2967756106286420595}
   - component: {fileID: 2967756106286420594}
-  - component: {fileID: 2967756106286420593}
+  - component: {fileID: 4894266103945705991}
   m_Layer: 0
   m_Name: Square
   m_TagString: Storylet
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2967756106286420593
+--- !u!114 &4894266103945705991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,23 +92,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2967756106286420592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82b8d7c6c375654fb479e10f1ad0b5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d0b6f0b1e59b9d4aab7414699d72118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  file: C:/Users/isaac/My project/Assets/A.mid
-  BPM: 1
-  playbackSettings:
-    volume: 0.3
-    playbackSpeed: 1.1
-    pitch: 1
-  channelSettings:
-    instrument: {fileID: 11400000, guid: 6ba0db0d4c63e594483788f69519b633, type: 2}
-    instrumentOffset: 0
-    noteOffset: 0
-    channels: 25
-    sourceFrequency: 100
-    audioSources: []
-    gameObjects: []
-  automaticBPMUpdate: 1
-  debug: 0
-  alwaysUseSourceSeparation: 1
