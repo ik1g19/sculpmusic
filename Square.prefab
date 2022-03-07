@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2967756106286420594}
   - component: {fileID: 6349155772827601403}
   - component: {fileID: 3365705950789526843}
+  - component: {fileID: 542061807759936201}
   m_Layer: 0
   m_Name: Square
   m_TagString: Storylet
@@ -199,3 +200,15 @@ MonoBehaviour:
   midiNote: 60
   midiNoteVolume: 100
   midiInstrument: 0
+--- !u!114 &542061807759936201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967756106286420592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329629972203df3459795235e6efc224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

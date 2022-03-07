@@ -62,14 +62,14 @@ public class MIDIPlayer : MonoBehaviour
     // Update methods is called the first time.
     void Start()
     {
-        if (!midiSequencer.isPlaying)
-        {
-            //if (!GetComponent<AudioSource>().isPlaying)
-            if (ShouldPlayFile)
-            {
-                LoadSong(midiFilePath);
-            }
-        }
+        // if (!midiSequencer.isPlaying)
+        // {
+        //     //if (!GetComponent<AudioSource>().isPlaying)
+        //     if (ShouldPlayFile)
+        //     {
+        //         LoadSong(midiFilePath);
+        //     }
+        // }
     }
 
 
