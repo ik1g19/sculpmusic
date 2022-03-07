@@ -62,14 +62,6 @@ public class MIDIPlayer : MonoBehaviour
     // Update methods is called the first time.
     void Start()
     {
-    }
-
-
-
-    // Update is called every frame, if the
-    // MonoBehaviour is enabled.
-    void Update()
-    {
         if (!midiSequencer.isPlaying)
         {
             //if (!GetComponent<AudioSource>().isPlaying)
@@ -78,7 +70,15 @@ public class MIDIPlayer : MonoBehaviour
                 LoadSong(midiFilePath);
             }
         }
-        else if (!ShouldPlayFile)
+    }
+
+
+
+    // Update is called every frame, if the
+    // MonoBehaviour is enabled.
+    void Update()
+    {
+        if (!ShouldPlayFile)
         {
             midiSequencer.Stop(true);
         }
