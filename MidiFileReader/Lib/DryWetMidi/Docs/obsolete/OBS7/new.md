@@ -1,1 +1,0 @@
-* [TimedObjectUtilities.ToTrackChunk](xref:Melanchall.DryWetMidi.Interaction.TimedObjectUtilities.ToTrackChunk*)
