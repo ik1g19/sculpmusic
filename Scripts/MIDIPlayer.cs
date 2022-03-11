@@ -58,6 +58,12 @@ public class MIDIPlayer : MonoBehaviour
 
 
 
+    public void play() {
+        LoadSong(midiFilePath);
+    }
+
+
+
     // Start is called just before any of the
     // Update methods is called the first time.
     void Start()
@@ -83,15 +89,15 @@ public class MIDIPlayer : MonoBehaviour
             midiSequencer.Stop(true);
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     midiStreamSynthesizer.NoteOn(0, midiNote, midiNoteVolume, midiInstrument);
+        // }
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            midiStreamSynthesizer.NoteOff(0, midiNote);
-        }
+        // if (Input.GetButtonUp("Fire1"))
+        // {
+        //     midiStreamSynthesizer.NoteOff(0, midiNote);
+        // }
     }
 
 
