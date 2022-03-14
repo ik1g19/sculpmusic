@@ -24,6 +24,8 @@ public class StoryEngine : MonoBehaviour
 
         stateText = GameObject.FindWithTag("StateText").GetComponent<Text>();
         stateText.text = "State: " + state.state.ToString();
+
+        tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
     }
 
 

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class TapePlayer : MonoBehaviour
 {
-    private Queue<GameObject> tapes;
+    private Queue<MIDIPlayer> tapes;
 
 
 
     void Start() {
-
+        tapes = new Queue<MIDIPlayer>();
     }
 
 
 
     void Update() {
-        if (getScript(tapes.Peek()).player.hasFinished()) {
+        if (tapes.Count > 0 && tapes.Peek().hasFinished()) {
             tapes.Dequeue();
             play();
         }
@@ -24,13 +24,13 @@ public class TapePlayer : MonoBehaviour
 
 
     public void play() {
-        getScript(tapes.Peek()).play();
+        tapes.Peek().play();
     }
 
 
 
-    public void insert(GameObject storylet) {
-        tapes.Enqueue(storylet);
+    public void insert(MIDIPlayer tape) {
+        tapes.Enqueue(tape);
     }
 
 

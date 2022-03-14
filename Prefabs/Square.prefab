@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 3365705950789526843}
   - component: {fileID: 542061807759936201}
   - component: {fileID: 3793741469139056741}
+  - component: {fileID: -740352585659633489}
   m_Layer: 0
   m_Name: Square
   m_TagString: Storylet
@@ -310,6 +311,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2967756106286420592}
   m_CullTransparentMesh: 1
+--- !u!58 &-740352585659633489
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967756106286420592}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &6848979596349524790
 GameObject:
   m_ObjectHideFlags: 0
