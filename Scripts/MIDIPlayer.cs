@@ -140,4 +140,10 @@ public class MIDIPlayer : MonoBehaviour
     {
         Debug.Log("NoteOff: " + note.ToString());
     }
+
+
+
+    public bool hasFinished() {
+        return !midiSequencer.isPlaying;
+    }
 }

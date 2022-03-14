@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class StoryEngine : MonoBehaviour
 {
     private GameObject prefab;
     private StoryCollection sCollection;
     private StoryState state;
+    private TapePlayer tapePlayer;
+    private Text stateText;
 
 
 
@@ -17,6 +21,9 @@ public class StoryEngine : MonoBehaviour
         state.state = 0;
 
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
+
+        stateText = GameObject.FindWithTag("StateText").GetComponent<Text>();
+        stateText.text = "State: " + state.state.ToString();
     }
 
 
@@ -24,9 +31,8 @@ public class StoryEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) sCollection.availableStorylets(state).randStorylet().GetComponent<Storylet>().play();
-        
-        if (Input.GetMouseButtonDown(1)) state.state++;
-        Debug.Log(state.state);
+        sCollection.availableStorylets(state).Select(s => s.GetComponent<Storylet>()).ToList().
+                                              ForEach(s => s.available = true);
+        if (Input.GetMouseButtonDown(1)) {state.state++; stateText.text = "State: " + state.state.ToString();}
     }
 }
