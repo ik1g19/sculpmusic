@@ -300,9 +300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   condition: 0
-  player: {fileID: 0}
+  tape: {fileID: 0}
   spriteRenderer: {fileID: 2967756106286420594}
   availableSprite: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
+  tapePlayer: {fileID: 0}
 --- !u!222 &3793741469139056741
 CanvasRenderer:
   m_ObjectHideFlags: 0

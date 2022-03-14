@@ -48,6 +48,7 @@ public class Storylet : MonoBehaviour
 
 
     public void OnMouseDown() {
-        tapePlayer.insert(tape);
+        //tapePlayer.insert(tape);
+        if (available) play();
     }
 }
