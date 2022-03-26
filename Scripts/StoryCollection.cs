@@ -15,13 +15,19 @@ public class StoryCollection
 
 
 
-    public void add(GameObject storylet) { storylets.Add(storylet); }
-
-
-
     public StoryCollection(GameObject[] storylets) {
         this.storylets = storylets.ToList();
     }
+
+
+
+    public StoryCollection(List<GameObject> storylets) {
+        this.storylets = storylets;
+    }
+
+
+
+    public void add(GameObject storylet) { storylets.Add(storylet); }
 
 
 

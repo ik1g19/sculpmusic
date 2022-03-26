@@ -371,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3365705950789526843, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: midiFilePath
-      value: Midis/e.mid
+      value: Midis/eFull.mid
       objectReference: {fileID: 0}
     - target: {fileID: 6841397897555776692, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_RootOrder
@@ -449,6 +449,10 @@ PrefabInstance:
     - target: {fileID: 2967756106286420595, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3365705950789526843, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: midiFilePath
+      value: Midis/AFull.mid
       objectReference: {fileID: 0}
     - target: {fileID: 6841397897555776692, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_RootOrder
@@ -666,7 +670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3365705950789526843, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: midiFilePath
-      value: Midis/D.mid
+      value: Midis/mn1.mid
       objectReference: {fileID: 0}
     - target: {fileID: 6841397897555776692, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_RootOrder

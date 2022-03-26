@@ -15,6 +15,7 @@ public class TapePlayer : MonoBehaviour
 
 
     void Update() {
+        if (tapes.Count == 1) play();
         if (tapes.Count > 0 && tapes.Peek().hasFinished()) {
             tapes.Dequeue();
             play();
@@ -30,7 +31,7 @@ public class TapePlayer : MonoBehaviour
 
 
     public void insert(MIDIPlayer tape) {
-        tapes.Enqueue(tape);
+        if (tapes.Count < 2) tapes.Enqueue(tape);
     }
 
 
