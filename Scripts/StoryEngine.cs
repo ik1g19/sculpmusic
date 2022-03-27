@@ -33,10 +33,17 @@ public class StoryEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        List<GameObject> available = sCollection.availableStorylets(state);
-        available.Select(s => s.GetComponent<Storylet>()).ToList().
-                                              ForEach(s => s.available = true);
-        tapePlayer.insert(new StoryCollection(available).randStorylet().GetComponent<MIDIPlayer>());
+        if (!tapePlayer.isPlaying()) {
+            List<GameObject> available = sCollection.availableStorylets(state);
+
+            available.Select(s => s.GetComponent<Storylet>()).ToList().
+                      ForEach(s => s.available = true);
+
+            Storylet randomStorylet = new StoryCollection(available).randStorylet().GetComponent<Storylet>();
+
+            tapePlayer.play(randomStorylet.getTape());
+        }
+
 
         if (Input.GetMouseButtonDown(1)) {state.state++; stateText.text = "State: " + state.state.ToString();}
     }

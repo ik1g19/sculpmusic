@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class TapePlayer : MonoBehaviour
 {
-    private Queue<MIDIPlayer> tapes;
+    private AudioSource audioSrc;
+    private float volume = 1.0f;
 
 
 
     void Start() {
-        tapes = new Queue<MIDIPlayer>();
+        audioSrc = gameObject.GetComponent<AudioSource>();
     }
 
 
 
     void Update() {
-        if (tapes.Count == 1) play();
-        if (tapes.Count > 0 && tapes.Peek().hasFinished()) {
-            tapes.Dequeue();
-            play();
-        }
+        
     }
 
 
 
-    public void play() {
-        tapes.Peek().play();
+    public void play(AudioClip tape) {
+        audioSrc.PlayOneShot(tape, volume);
     }
 
 
 
-    public void insert(MIDIPlayer tape) {
-        if (tapes.Count < 2) tapes.Enqueue(tape);
-    }
-
-
-
-    private Storylet getScript(GameObject obj) {
-        return obj.GetComponent<Storylet>();
-    }
+    public bool isPlaying() {return audioSrc.isPlaying;}
 }

@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class Storylet : MonoBehaviour
 {
     public int condition;
-    public MIDIPlayer tape;
+    
     public SpriteRenderer spriteRenderer;
     public Sprite availableSprite;
     private Text text;
+
     public bool available {get; set;}
-    public TapePlayer tapePlayer;
+
+    private TapePlayer tapePlayer;
+    public AudioClip tape;
 
 
 
@@ -19,7 +22,7 @@ public class Storylet : MonoBehaviour
     void Start()
     {
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
-        tape = gameObject.GetComponent<MIDIPlayer>();
+        
         text = gameObject.GetComponentInChildren<Text>();
         text.text = condition.ToString();
         available = false;
@@ -32,12 +35,6 @@ public class Storylet : MonoBehaviour
     {
         available = false;
     }
-    
-
-
-    public void play() {
-        tape.play();
-    }
 
 
 
@@ -47,24 +44,5 @@ public class Storylet : MonoBehaviour
 
 
 
-    public void OnMouseDown() {
-        // //tapePlayer.insert(tape);
-        // if (available) play();
-
-        // Create the synthesizer.
-        // var sampleRate = 44100;
-        // var synthesizer = new Synthesizer("TimGM6mb.sf2", sampleRate);
-
-        // // Read the MIDI file.
-        // var midiFile = new MidiFile("flourish.mid");
-        // var sequencer = new MidiFileSequencer(synthesizer);
-        // sequencer.Play(midiFile, false);
-
-        // // The output buffer.
-        // var left = new float[(int)(sampleRate * midiFile.Length.TotalSeconds)];
-        // var right = new float[(int)(sampleRate * midiFile.Length.TotalSeconds)];
-
-        // // Render the waveform.
-        // sequencer.Render(left, right);
-    }
+    public AudioClip getTape() {return tape;}
 }
