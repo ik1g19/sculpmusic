@@ -286,7 +286,7 @@ MonoBehaviour:
   bufferSize: 1024
   midiNote: 60
   midiNoteVolume: 100
-  midiInstrument: 27
+  midiInstrument: 0
 --- !u!114 &542061807759936201
 MonoBehaviour:
   m_ObjectHideFlags: 0
