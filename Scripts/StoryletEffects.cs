@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public struct StoryState
+public class StoryletEffects : MonoBehaviour
 {
-    public int bar {get; set;}
-
+    public int bar;
     public string harmony;
 }

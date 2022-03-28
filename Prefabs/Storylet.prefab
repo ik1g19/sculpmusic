@@ -90,6 +90,8 @@ GameObject:
   - component: {fileID: 6841397897555776692}
   - component: {fileID: 2967756106286420594}
   - component: {fileID: 542061807759936201}
+  - component: {fileID: -3473457971152984098}
+  - component: {fileID: 5769148131742619063}
   - component: {fileID: 3793741469139056741}
   - component: {fileID: -740352585659633489}
   m_Layer: 0
@@ -159,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 16b0da376c1d47d4aa0472776c06a65d, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -182,10 +184,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329629972203df3459795235e6efc224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: 0
-  spriteRenderer: {fileID: 2967756106286420594}
-  availableSprite: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
+  sprtRenderer: {fileID: 2967756106286420594}
+  defaultSprt: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
+  availableSprt: {fileID: -2413806693520163455, guid: 16b0da376c1d47d4aa0472776c06a65d, type: 3}
+  currentSprt: {fileID: -2413806693520163455, guid: 669580ca3bf7ee54787a54afdd87661a, type: 3}
+  selectedSprt: {fileID: -2413806693520163455, guid: 7ccede4286b39d442b639e4d2be4f33a, type: 3}
+  startingStorylet: 0
   tape: {fileID: 0}
+--- !u!114 &-3473457971152984098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967756106286420592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79002ddedd058245a16cc424654eb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 0
+  harmony: 
+--- !u!114 &5769148131742619063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967756106286420592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c510938ea926140a37ba61fda7e1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: 0
+  harmony: 
 --- !u!222 &3793741469139056741
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -292,7 +325,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1422668921607496176
 MonoBehaviour:
   m_ObjectHideFlags: 0

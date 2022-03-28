@@ -5,23 +5,67 @@ using System.Linq;
 
 public class PresentationEngine : MonoBehaviour
 {
-    private StoryCollection storylets;
+    StoryCollection sCollection;
+
+
+
+    void OnEnable()
+    {
+        Storylet.OnClick += storyletClicked;
+        TapePlayer.OnTapeEnd += tapeFinished;
+    }
+
+
+
+    void OnDisable()
+    {
+        Storylet.OnClick -= storyletClicked;
+        TapePlayer.OnTapeEnd -= tapeFinished;
+    }
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        storylets = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));        
+        sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));        
     }
 
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        storylets.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
-                        .Where(s => s.available).ToList()
-                        .ForEach(s => s.changeSprite());
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     // storylets.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
+    //     //                 .Where(s => s.available).ToList()
+    //     //                 .ForEach(s => s.setAvailable());
+    //     storylets.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
+    //                     .ForEach(s => {
+    //                         if (s.available) s.setAvailable();
+    //                         if (s.current) s.setCurrent();
+    //                     });
+    // }
+
+
+
+    public void storyletClicked(Storylet storylet) {
+        Storylet selected = StoryEngine.selectedStorylet;
+
+        if (selected != null) {
+            if (selected.available) selected.spriteToAvailable();
+            else selected.spriteToDefault();
+        }
+
+        storylet.spriteToSelected();
+    }
+
+
+
+    public void tapeFinished() {
+        sCollection.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
+                          .Where(s => s.available).ToList()
+                          .ForEach(s => s.spriteToAvailable());
+
+        StoryEngine.currentStorylet.spriteToCurrent();
     }
 }

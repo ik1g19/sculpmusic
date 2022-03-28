@@ -12,39 +12,68 @@ public class StoryEngine : MonoBehaviour
     private TapePlayer tapePlayer;
     private Text stateText;
 
+    public static Storylet currentStorylet; 
+    public static Storylet selectedStorylet;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         state = new StoryState();
-        state.state = 0;
+        state.bar = 0;
 
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
 
         stateText = GameObject.FindWithTag("StateText").GetComponent<Text>();
-        stateText.text = "State: " + state.state.ToString();
+        stateText.text = "State: " + state.bar.ToString();
 
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
     }
 
 
 
-    // Update is called once per frame
-    void Update()
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     if (!tapePlayer.isPlaying()) {
+    //         // List<GameObject> available = sCollection.availableStorylets(state);
+
+    //         // available.Select(s => s.GetComponent<Storylet>()).ToList().
+    //         //           ForEach(s => s.available = true);
+
+    //         // Storylet randomStorylet = new StoryCollection(available).randStorylet().GetComponent<Storylet>();
+    //         // randomStorylet.current = true;
+
+    //         // tapePlayer.play(randomStorylet.getTape());
+    //         tapePlayer.play( currentStorylet.getTape() );
+    //     }
+
+
+    //     if (Input.GetMouseButtonDown(1)) {state.state++; stateText.text = "State: " + state.state.ToString();}
+    // }
+
+
+
+    void OnEnable()
     {
-        if (!tapePlayer.isPlaying()) {
-            List<GameObject> available = sCollection.availableStorylets(state);
-
-            available.Select(s => s.GetComponent<Storylet>()).ToList().
-                      ForEach(s => s.available = true);
-
-            Storylet randomStorylet = new StoryCollection(available).randStorylet().GetComponent<Storylet>();
-
-            tapePlayer.play(randomStorylet.getTape());
-        }
-
-
-        if (Input.GetMouseButtonDown(1)) {state.state++; stateText.text = "State: " + state.state.ToString();}
+        TapePlayer.OnTapeEnd += tapeFinished;
     }
+
+
+
+    void OnDisable()
+    {
+        TapePlayer.OnTapeEnd -= tapeFinished;
+    }
+
+
+
+    public void tapeFinished() {
+        List<GameObject> available = sCollection.availableStorylets(state);
+        
+        available.Select(s => s.GetComponent<Storylet>()).ToList().
+                  ForEach(s => s.available = true);
+    } 
+
 }

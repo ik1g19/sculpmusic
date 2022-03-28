@@ -51,12 +51,17 @@ public class StoryCollection
 
 
     public List<GameObject> availableStorylets(StoryState state) {
-        return storylets.Select(s => new {sGObj = s, sObj = s.GetComponent<Storylet>()}).AsEnumerable()
-                        //.Select(s => (s, s.GetComponent<Storylet>())).ToList()
-                        .Where(sPair => sPair.sObj.condition <= state.state).ToList()
-                        .Select(sPair => sPair.sGObj).ToList();
+        return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
 
-                        //.Select(s => new {sGObj = s, sObj = s.GetComponent<Storylet>()}).AsEnumerable()
+                        .Where(  sPair => checkAvailable(sPair.sObj.guard, state)  ).ToList()
+
+                        .Select(sPair => sPair.sGObj).ToList();
+    }
+
+
+
+    private bool checkAvailable(StoryletGuard storyletGuard, StoryState storyState) {
+        return true;
     }
 
 
