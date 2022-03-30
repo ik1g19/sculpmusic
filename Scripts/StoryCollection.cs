@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StoryCollection
 {
-    List<GameObject> storylets;
+    private List<GameObject> storylets;
 
 
 
@@ -50,21 +50,28 @@ public class StoryCollection
 
 
 
-    public List<GameObject> availableStorylets(StoryState state) {
+    public List<GameObject> availableStorylets(List<Properties> state) {
         return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
 
-                        .Where(  sPair => checkAvailable(sPair.sObj.guard, state)  ).ToList()
+                        .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()
 
                         .Select(sPair => sPair.sGObj).ToList();
     }
 
 
 
-    private bool checkAvailable(StoryletGuard storyletGuard, StoryState storyState) {
-        return true;
-    }
+    // private bool checkAvailable(StoryletGuard storyletGuard, StoryState storyState) {
+    //     if (  ((storyState.bar - 1) <= storyletGuard.bar) && (storyletGuard.bar <= (storyState.bar + 1))  ) {
+    //         if (storyState.harmony.Equals(storyletGuard.harmony)) return true;
+    //     }
+    //     return false;
+    // }
 
 
 
     public List<GameObject> list() {return storylets;}
+
+
+
+    public List<Storylet> scriptList() {return storylets.Select(  s => s.GetComponent<Storylet>()  ).ToList();}
 }

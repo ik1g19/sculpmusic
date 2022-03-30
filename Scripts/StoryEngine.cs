@@ -8,9 +8,9 @@ public class StoryEngine : MonoBehaviour
 {
     private GameObject prefab;
     private StoryCollection sCollection;
-    private StoryState state;
+    private List<Properties> state;
     private TapePlayer tapePlayer;
-    private Text stateText;
+    //private Text stateText;
 
     public static Storylet currentStorylet; 
     public static Storylet selectedStorylet;
@@ -20,13 +20,12 @@ public class StoryEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = new StoryState();
-        state.bar = 0;
+        //state = gameObject.GetComponent<StoryState>();
 
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
 
-        stateText = GameObject.FindWithTag("StateText").GetComponent<Text>();
-        stateText.text = "State: " + state.bar.ToString();
+        // stateText = GameObject.FindWithTag("StateText").GetComponent<Text>();
+        // stateText.text = "State: " + state.bar.ToString();
 
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
     }
@@ -70,10 +69,15 @@ public class StoryEngine : MonoBehaviour
 
 
     public void tapeFinished() {
+        state = selectedStorylet.effects;
+
+        sCollection.scriptList().ForEach(  s => s.available = false  );
+
         List<GameObject> available = sCollection.availableStorylets(state);
         
-        available.Select(s => s.GetComponent<Storylet>()).ToList().
-                  ForEach(s => s.available = true);
+        available.Select(  s => s.GetComponent<Storylet>()  ).ToList().
+                  ForEach(  s => s.available = true  );
+
     } 
 
 }

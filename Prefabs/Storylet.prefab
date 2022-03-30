@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3625047594909714670}
   m_RootOrder: 0
@@ -90,8 +91,6 @@ GameObject:
   - component: {fileID: 6841397897555776692}
   - component: {fileID: 2967756106286420594}
   - component: {fileID: 542061807759936201}
-  - component: {fileID: -3473457971152984098}
-  - component: {fileID: 5769148131742619063}
   - component: {fileID: 3793741469139056741}
   - component: {fileID: -740352585659633489}
   m_Layer: 0
@@ -111,6 +110,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 97.399635, y: 96.20041, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3625047594909714670}
   m_Father: {fileID: 0}
@@ -132,6 +132,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -191,34 +192,8 @@ MonoBehaviour:
   selectedSprt: {fileID: -2413806693520163455, guid: 7ccede4286b39d442b639e4d2be4f33a, type: 3}
   startingStorylet: 0
   tape: {fileID: 0}
---- !u!114 &-3473457971152984098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967756106286420592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79002ddedd058245a16cc424654eb3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: 0
-  harmony: 
---- !u!114 &5769148131742619063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967756106286420592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c510938ea926140a37ba61fda7e1e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: 0
-  harmony: 
+  guard: 
+  effects: 
 --- !u!222 &3793741469139056741
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -272,6 +247,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.010266979, y: 0.010394966, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6261812815033523115}
   m_Father: {fileID: 6841397897555776692}
@@ -300,6 +276,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

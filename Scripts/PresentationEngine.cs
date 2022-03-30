@@ -62,9 +62,14 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void tapeFinished() {
-        sCollection.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
-                          .Where(s => s.available).ToList()
-                          .ForEach(s => s.spriteToAvailable());
+        sCollection.scriptList().ForEach(  s => s.spriteToDefault()  );
+
+        sCollection.scriptList().Where(  s => s.available  ).ToList()
+                                .ForEach(  s => s.spriteToAvailable()  );
+
+        // sCollection.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
+        //                   .Where(s => !s.available).ToList()
+        //                   .ForEach(s => s.spriteToDefault());
 
         StoryEngine.currentStorylet.spriteToCurrent();
     }

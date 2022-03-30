@@ -43,7 +43,6 @@ public class InteractionEngine : MonoBehaviour
 
 
     public void tapeFinished() {
-        if (StoryEngine.selectedStorylet != null) StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
-        StoryEngine.selectedStorylet = null;
+        StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
     }
 }

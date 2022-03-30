@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Storylet : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Storylet : MonoBehaviour
     private TapePlayer tapePlayer;
     public AudioClip tape;
 
-    public StoryletGuard guard {get; set;}
+    public List<Properties> guard;
+    public List<Properties> effects;
 
     public delegate void ClickedStorylet(Storylet storylet);
     public static event ClickedStorylet OnClick;
@@ -33,7 +35,8 @@ public class Storylet : MonoBehaviour
         //text.text = condition.ToString();
         available = false;
 
-        guard = gameObject.GetComponent<StoryletGuard>();
+        // guard = gameObject.GetComponent<StoryletGuard>();
+        // effects = gameObject.GetComponent<StoryletEffects>();
 
         if (startingStorylet) {
             StoryEngine.currentStorylet = this;
@@ -83,5 +86,13 @@ public class Storylet : MonoBehaviour
         if (available) {
             if (OnClick != null) OnClick(this);
         }
+    }
+
+
+
+    public bool checkAvailable(List<Properties> state) {
+        return available =  state.Select(  p => guard.Contains(p)  ).ToList()
+
+                                 .Aggregate(  true, (fold, next) => fold && next  );
     }
 }

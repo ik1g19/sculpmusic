@@ -1,9 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public struct StoryState
-{
-    public int bar {get; set;}
+// public class StoryState : MonoBehaviour
+// {
+//     //public State storyState {get; set;}
 
-    public string harmony;
-}
+//     public List<Properties> state;
+
+
+
+//     void Start() {
+
+//         // storyState = new State{
+//         //     melodic = state.melodic,
+//         //     major = state.major
+//         // };
+
+//     }
+// }
