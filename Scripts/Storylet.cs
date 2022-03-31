@@ -19,8 +19,8 @@ public class Storylet : MonoBehaviour
     private TapePlayer tapePlayer;
     public AudioClip tape;
 
-    public List<Properties> guard;
-    public List<Properties> effects;
+    public List<Flags> guard;
+    public List<Flags> effects;
 
     public delegate void ClickedStorylet(Storylet storylet);
     public static event ClickedStorylet OnClick;
@@ -33,7 +33,7 @@ public class Storylet : MonoBehaviour
         
         text = gameObject.GetComponentInChildren<Text>();
         //text.text = condition.ToString();
-        available = false;
+        //available = false;
 
         // guard = gameObject.GetComponent<StoryletGuard>();
         // effects = gameObject.GetComponent<StoryletEffects>();
@@ -43,14 +43,6 @@ public class Storylet : MonoBehaviour
             if (OnClick != null) OnClick(this);
         }
     }
-
-
-
-    // void Update()
-    // {
-    //     available = false;
-    //     sprtRenderer.sprite = defaultSprt;
-    // }
 
 
 
@@ -90,8 +82,8 @@ public class Storylet : MonoBehaviour
 
 
 
-    public bool checkAvailable(List<Properties> state) {
-        return available =  state.Select(  p => guard.Contains(p)  ).ToList()
+    public bool checkAvailable(List<Flags> state) {
+        return available =  guard.Select(  f => state.Contains(f)  ).ToList()
 
                                  .Aggregate(  true, (fold, next) => fold && next  );
     }

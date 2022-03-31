@@ -7,7 +7,7 @@ public class TapePlayer : MonoBehaviour
     private AudioSource audioSrc;
     private float volume = 1.0f;
 
-    public delegate void TapeFinished();
+    public delegate void TapeFinished(bool changeStorylet);
     public static event TapeFinished OnTapeEnd;
 
 
@@ -22,7 +22,7 @@ public class TapePlayer : MonoBehaviour
     void Update() {
         if (!audioSrc.isPlaying) {
             // StartCoroutine(nearTapeEnd(StoryEngine.currentStorylet.tape.length));
-            if (OnTapeEnd != null) OnTapeEnd();
+            if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
             play(StoryEngine.currentStorylet.tape);
         }
     }
@@ -36,11 +36,4 @@ public class TapePlayer : MonoBehaviour
 
 
     public bool isPlaying() {return audioSrc.isPlaying;}
-
-
-
-    // IEnumerator nearTapeEnd(float length) {
-    //     yield return new WaitForSeconds(length - .1f);
-    //     if (OnTapeEnd != null) OnTapeEnd();
-    // }
 }

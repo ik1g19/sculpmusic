@@ -7,12 +7,18 @@ public class InteractionEngine : MonoBehaviour
 {
     private StoryCollection storylets;
 
+    public delegate void TapeFinishedIE(bool changeStorylet);
+    public static event TapeFinishedIE OnTapeEndIE;
+
+    public delegate void ClickedStoryletIE(Storylet storylet);
+    public static event ClickedStoryletIE OnClickIE;
+
 
 
     void OnEnable()
     {
         Storylet.OnClick += storyletClicked;
-        TapePlayer.OnTapeEnd += tapeFinished;
+        StoryEngine.OnTapeEndSE += tapeFinished;
     }
 
 
@@ -20,7 +26,7 @@ public class InteractionEngine : MonoBehaviour
     void OnDisable()
     {
         Storylet.OnClick -= storyletClicked;
-        TapePlayer.OnTapeEnd -= tapeFinished;
+        StoryEngine.OnTapeEndSE -= tapeFinished;
     }
 
 
@@ -38,11 +44,13 @@ public class InteractionEngine : MonoBehaviour
 
     public void storyletClicked(Storylet storylet) {
         StoryEngine.selectedStorylet = storylet;
+        if (OnClickIE != null) OnClickIE(storylet);
     }
 
 
 
-    public void tapeFinished() {
+    public void tapeFinished(bool changeStorylet) {
         StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
+        if (OnTapeEndIE != null) OnTapeEndIE(changeStorylet);
     }
 }

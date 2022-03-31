@@ -50,7 +50,7 @@ public class StoryCollection
 
 
 
-    public List<GameObject> availableStorylets(List<Properties> state) {
+    public List<GameObject> availableStorylets(List<Flags> state) {
         return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
 
                         .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()

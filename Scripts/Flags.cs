@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System;
 
 [Serializable]
-public enum Properties
+public enum Flags
 {
+    start,
     melodic,
-    major
+    major,
+    tritone,
+    unreachable
 }
