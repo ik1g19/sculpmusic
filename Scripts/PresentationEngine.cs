@@ -7,11 +7,15 @@ using System.Linq;
 public class PresentationEngine : MonoBehaviour
 {
     StoryCollection sCollection;
-    public bool circleInterface;
+    static bool circleInterface;
+    public bool setCircleInterface;
 
     private bool initial = true;
 
     public float RADIUS;
+
+    public delegate void MoveCamera();
+    public static event MoveCamera PanCamera;
 
 
 
@@ -35,6 +39,7 @@ public class PresentationEngine : MonoBehaviour
     void Start()
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
+        circleInterface = setCircleInterface;
     }
 
 
@@ -68,35 +73,60 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void tapeFinished(bool changeStorylet) {
-        if (!circleInterface) {
-            sCollection.scriptList().ForEach(  s => s.spriteToDefault()  );
+        if (circleInterface) tapeEndUpdateInterfaceCircle(changeStorylet);
+        else tapeEndUpdateInterface(changeStorylet);
+    }
 
-            sCollection.scriptList().Where(  s => s.available  ).ToList()
-                                    .ForEach(  s => s.spriteToAvailable()  );
 
-            StoryEngine.currentStorylet.spriteToCurrent();
+
+    private void tapeEndUpdateInterface(bool changeStorylet) {
+        sCollection.scriptList().ForEach(  s => s.spriteToDefault()  );
+
+        sCollection.scriptList().Where(  s => s.available  ).ToList()
+                                .ForEach(  s => s.spriteToAvailable()  );
+
+        StoryEngine.currentStorylet.spriteToCurrent();
+    }
+
+
+
+    private void tapeEndUpdateInterfaceCircle(bool changeStorylet) {
+        if (changeStorylet || initial) {
+            arrangeArround(availableStorylets(sCollection), StoryEngine.currentStorylet.gameObject, RADIUS);
+
+            foreach (GameObject s in sCollection.list()) s.GetComponent<LineRenderer>().enabled = false;
+            drawLines(availableStorylets(sCollection), StoryEngine.currentStorylet.gameObject);
         }
 
+        sCollection.list().ForEach(  s => s.SetActive(false)  );
 
-        else {
-            if (changeStorylet || initial) {
-                arrangeArround(availableStorylets(sCollection), StoryEngine.currentStorylet.gameObject, RADIUS);
-                if (initial) initial = false;
-            }
+        sCollection.scriptList().Where(  s => s.available  ).ToList()
+                                .ForEach(  s => {s.gameObject.SetActive(true); s.spriteToAvailable();}  );
 
-            sCollection.list().ForEach(  s => s.SetActive(false)  );
+        StoryEngine.currentStorylet.spriteToCurrent();
 
-            sCollection.scriptList().Where(  s => s.available  ).ToList()
-                                    .ForEach(  s => {s.gameObject.SetActive(true); s.spriteToAvailable();}  );
+        if (PanCamera != null && !initial) PanCamera();
 
-            StoryEngine.currentStorylet.spriteToCurrent();
+        if (initial) initial = false;
+    }
+
+
+
+    private void drawLines(List<GameObject> collection, GameObject centre) {
+        List<GameObject> withoutCentre = collection.Where(  s => !s.Equals(centre)  ).ToList();
+
+        foreach (GameObject s in withoutCentre) {
+            LineRenderer lr = s.GetComponent<LineRenderer>();
+            lr.enabled = true;
+            lr.SetPosition(0, s.transform.position);
+            lr.SetPosition(1, StoryEngine.currentStorylet.gameObject.transform.position);
         }
     }
 
 
 
-    private void arrangeArround(List<GameObject> collection, GameObject centre, float radius) {
-        List<GameObject> withoutCentre = collection.Where(  s => !s.Equals(centre)  ).ToList();
+    private void arrangeArround(List<GameObject> available, GameObject centre, float radius) {
+        List<GameObject> withoutCentre = available.Where(  s => !s.Equals(centre)  ).ToList();
         arrangeCircle(withoutCentre, centre.transform.position, radius);
     }
 
@@ -133,7 +163,7 @@ public class PresentationEngine : MonoBehaviour
 
     private List<GameObject> availableStorylets(StoryCollection sColl) {
         //Debug.Log(sColl.list().Where(  s => s.GetComponent<Storylet>().available  ).ToList().Count);
-        foreach(GameObject s in sColl.list()){Debug.Log(s.GetComponent<Storylet>().available);}
+        //foreach(GameObject s in sColl.list()){Debug.Log(s.GetComponent<Storylet>().available);}
         return sColl.list().Where(  s => s.GetComponent<Storylet>().available  ).ToList();
     }
 }

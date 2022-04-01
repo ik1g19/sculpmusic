@@ -50,7 +50,7 @@ public class StoryEngine : MonoBehaviour
         sCollection.scriptList().ForEach(  s => s.available = false  );
 
         List<GameObject> available = sCollection.availableStorylets(state);
-        Debug.Log(available.Count);
+        //Debug.Log(available.Count);
         
         available.Select(  s => s.GetComponent<Storylet>()  ).ToList().
                   ForEach(  s => s.available = true  );

@@ -20,6 +20,13 @@ public class TapePlayer : MonoBehaviour
 
 
     void Update() {
+        //DEBUG
+        if (Input.GetMouseButtonDown(1)) {
+            audioSrc.Stop();
+            if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
+            play(StoryEngine.currentStorylet.tape);
+        }
+
         if (!audioSrc.isPlaying) {
             // StartCoroutine(nearTapeEnd(StoryEngine.currentStorylet.tape.length));
             if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
