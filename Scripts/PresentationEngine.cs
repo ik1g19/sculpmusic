@@ -7,6 +7,7 @@ using System.Linq;
 public class PresentationEngine : MonoBehaviour
 {
     StoryCollection sCollection;
+
     static bool circleInterface;
     public bool setCircleInterface;
 
@@ -73,41 +74,50 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void tapeFinished(bool changeStorylet) {
-        if (circleInterface) tapeEndUpdateInterfaceCircle(changeStorylet);
-        else tapeEndUpdateInterface(changeStorylet);
+        if (  circleInterface && (changeStorylet || initial)  ) tapeEndUpdateInterfaceCircle();
+
+        else if (changeStorylet || initial) tapeEndUpdateInterface();
+
+        if (initial) initial = false;
     }
 
 
 
-    private void tapeEndUpdateInterface(bool changeStorylet) {
+    private void tapeEndUpdateInterface() {
+
+        List<GameObject> available = availableStorylets(sCollection);
+
+        foreach (GameObject s in sCollection.list()) s.GetComponent<LineRenderer>().enabled = false;
+        drawLines(available, StoryEngine.currentStorylet.gameObject);
+
         sCollection.scriptList().ForEach(  s => s.spriteToDefault()  );
 
-        sCollection.scriptList().Where(  s => s.available  ).ToList()
-                                .ForEach(  s => s.spriteToAvailable()  );
+        available.ForEach(  s => s.GetComponent<Storylet>().spriteToAvailable()  );
 
         StoryEngine.currentStorylet.spriteToCurrent();
+
     }
 
 
 
-    private void tapeEndUpdateInterfaceCircle(bool changeStorylet) {
-        if (changeStorylet || initial) {
-            arrangeArround(availableStorylets(sCollection), StoryEngine.currentStorylet.gameObject, RADIUS);
+    private void tapeEndUpdateInterfaceCircle() {
 
-            foreach (GameObject s in sCollection.list()) s.GetComponent<LineRenderer>().enabled = false;
-            drawLines(availableStorylets(sCollection), StoryEngine.currentStorylet.gameObject);
-        }
+        List<GameObject> available = availableStorylets(sCollection);
+
+        arrangeArround(available, StoryEngine.currentStorylet.gameObject, RADIUS);
+
+        foreach (GameObject s in sCollection.list()) s.GetComponent<LineRenderer>().enabled = false;
+        drawLines(available, StoryEngine.currentStorylet.gameObject);
+    
 
         sCollection.list().ForEach(  s => s.SetActive(false)  );
 
-        sCollection.scriptList().Where(  s => s.available  ).ToList()
-                                .ForEach(  s => {s.gameObject.SetActive(true); s.spriteToAvailable();}  );
+        available.ForEach(  s => {s.SetActive(true); s.GetComponent<Storylet>().spriteToAvailable();}  );
 
         StoryEngine.currentStorylet.spriteToCurrent();
 
         if (PanCamera != null && !initial) PanCamera();
 
-        if (initial) initial = false;
     }
 
 

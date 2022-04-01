@@ -46,7 +46,7 @@ public class PanCamera : MonoBehaviour
             yield return null;
         }
 
-        //transform.position = destination;
+        transform.position = destination;
 
         Debug.Log("done");
     }
