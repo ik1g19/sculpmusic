@@ -17,7 +17,6 @@ public class PanCamera : MonoBehaviour
 
     void triggerCameraPan() {
         StartCoroutine(panCamera(StoryEngine.currentStorylet.gameObject.transform.position - new Vector3(0,0,10)));
-        Debug.Log(StoryEngine.currentStorylet.gameObject.transform.position);
     }
 
 
@@ -47,8 +46,6 @@ public class PanCamera : MonoBehaviour
         }
 
         transform.position = destination;
-
-        Debug.Log("done");
     }
 
 

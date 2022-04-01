@@ -136,6 +136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 20838da10077f884bb5e3ba0215a1910, type: 3}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: text
+      value: majortritone
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: guard.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -266,6 +270,10 @@ PrefabInstance:
       propertyPath: tape
       value: 
       objectReference: {fileID: 8300000, guid: ea86ff9f03c164040b94b99a2101480b, type: 3}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: text
+      value: major
+      objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: guard.Array.size
       value: 1
@@ -750,6 +758,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4f31c5685d90ac443b61818192569b4e, type: 3}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: text
+      value: melodic
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: guard.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -950,6 +962,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: text
+      value: start
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: guard.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1125,7 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37fc56dd92cde7429373b70b72f645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setCircleInterface: 0
+  setCircleInterface: 1
   RADIUS: 236
 --- !u!4 &1640448495
 Transform:

@@ -5,13 +5,19 @@ using System.Linq;
 
 public class InteractionEngine : MonoBehaviour
 {
-    private StoryCollection storylets;
+    private StoryCollection sCollection;
 
     public delegate void TapeFinishedIE(bool changeStorylet);
     public static event TapeFinishedIE OnTapeEndIE;
 
     public delegate void ClickedStoryletIE(Storylet storylet);
     public static event ClickedStoryletIE OnClickIE;
+
+
+
+    void Start() {
+        sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
+    }
 
 
 
@@ -34,7 +40,7 @@ public class InteractionEngine : MonoBehaviour
     // // Update is called once per frame
     // void Update()
     // {
-    //     storylets.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
+    //     sCollection.list().Select(sObj => sObj.GetComponent<Storylet>()).ToList()
     //                     .ForEach(s => {
     //                         if (s.clicked) s.setCurrent();
     //                     });
@@ -51,6 +57,7 @@ public class InteractionEngine : MonoBehaviour
 
     public void tapeFinished(bool changeStorylet) {
         StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
+
         if (OnTapeEndIE != null) OnTapeEndIE(changeStorylet);
     }
 }

@@ -45,15 +45,14 @@ public class StoryEngine : MonoBehaviour
 
 
     public void tapeFinished(bool changeStorylet) {
+        if (  PresentationEngine.circleInterface && !PresentationEngine.initial && !changeStorylet  ) {
+            StoryEngine.selectedStorylet = sCollection.randAvailableStorylet().GetComponent<Storylet>();
+            changeStorylet = true;
+        }
+
         state = selectedStorylet.effects;
 
-        sCollection.scriptList().ForEach(  s => s.available = false  );
-
-        List<GameObject> available = sCollection.availableStorylets(state);
-        //Debug.Log(available.Count);
-        
-        available.Select(  s => s.GetComponent<Storylet>()  ).ToList().
-                  ForEach(  s => s.available = true  );
+        sCollection.flagAvailableStorylets(state);
 
         StoryEngine.selectedStorylet.available = true;
 

@@ -11,7 +11,7 @@ public class Storylet : MonoBehaviour
     public Sprite availableSprt;
     public Sprite currentSprt;
     public Sprite selectedSprt;
-    private Text text;
+    public string text;
 
     public bool available {get; set;}
     public bool startingStorylet;
@@ -31,7 +31,7 @@ public class Storylet : MonoBehaviour
     {
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
         
-        text = gameObject.GetComponentInChildren<Text>();
+        //text = gameObject.GetComponentInChildren<Text>();
         //text.text = condition.ToString();
         //available = false;
 

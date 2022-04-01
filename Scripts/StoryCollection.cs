@@ -37,6 +37,13 @@ public class StoryCollection
 
 
 
+    public GameObject randAvailableStorylet() {
+        List<GameObject> available = getAvailableStorylets().Where(s => !s.GetComponent<Storylet>().Equals(StoryEngine.currentStorylet)).ToList();
+        return available[Random.Range(0,available.Count)];
+    }
+
+
+
     // public StoryCollection availableStorylets(StoryState state) {
     //     StoryCollection available = new StoryCollection();
 
@@ -50,12 +57,22 @@ public class StoryCollection
 
 
 
-    public List<GameObject> availableStorylets(List<Flags> state) {
-        return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
+    public void flagAvailableStorylets(List<Flags> state) {
+        // return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
 
-                        .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()
+        //                 .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()
 
-                        .Select(sPair => sPair.sGObj).ToList();
+        //                 .Select(sPair => sPair.sGObj).ToList();
+        storylets.ForEach(s => s.GetComponent<Storylet>().available = false);
+
+        storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(state)).ToList()
+                 .ForEach(s => s.GetComponent<Storylet>().available = true);
+    }
+
+
+
+    public List<GameObject> getAvailableStorylets() {
+        return storylets.Where(s => s.GetComponent<Storylet>().available).ToList();
     }
 
 

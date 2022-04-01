@@ -8,10 +8,10 @@ public class PresentationEngine : MonoBehaviour
 {
     StoryCollection sCollection;
 
-    static bool circleInterface;
+    public static bool circleInterface;
     public bool setCircleInterface;
 
-    private bool initial = true;
+    public static bool initial = true;
 
     public float RADIUS;
 
@@ -74,6 +74,7 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void tapeFinished(bool changeStorylet) {
+        Debug.Log(StoryEngine.currentStorylet.text);
         if (  circleInterface && (changeStorylet || initial)  ) tapeEndUpdateInterfaceCircle();
 
         else if (changeStorylet || initial) tapeEndUpdateInterface();
@@ -85,7 +86,7 @@ public class PresentationEngine : MonoBehaviour
 
     private void tapeEndUpdateInterface() {
 
-        List<GameObject> available = availableStorylets(sCollection);
+        List<GameObject> available = sCollection.getAvailableStorylets();
 
         foreach (GameObject s in sCollection.list()) s.GetComponent<LineRenderer>().enabled = false;
         drawLines(available, StoryEngine.currentStorylet.gameObject);
@@ -102,7 +103,7 @@ public class PresentationEngine : MonoBehaviour
 
     private void tapeEndUpdateInterfaceCircle() {
 
-        List<GameObject> available = availableStorylets(sCollection);
+        List<GameObject> available = sCollection.getAvailableStorylets();
 
         arrangeArround(available, StoryEngine.currentStorylet.gameObject, RADIUS);
 
@@ -167,13 +168,5 @@ public class PresentationEngine : MonoBehaviour
 
             i++;
         }
-    }
-
-
-
-    private List<GameObject> availableStorylets(StoryCollection sColl) {
-        //Debug.Log(sColl.list().Where(  s => s.GetComponent<Storylet>().available  ).ToList().Count);
-        //foreach(GameObject s in sColl.list()){Debug.Log(s.GetComponent<Storylet>().available);}
-        return sColl.list().Where(  s => s.GetComponent<Storylet>().available  ).ToList();
     }
 }
