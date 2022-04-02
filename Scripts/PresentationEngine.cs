@@ -18,6 +18,9 @@ public class PresentationEngine : MonoBehaviour
     public delegate void MoveCamera();
     public static event MoveCamera PanCamera;
 
+    public delegate void Timer();
+    public static event Timer StartTimer;
+
 
 
     void OnEnable()
@@ -118,6 +121,8 @@ public class PresentationEngine : MonoBehaviour
         StoryEngine.currentStorylet.spriteToCurrent();
 
         if (PanCamera != null && !initial) PanCamera();
+
+        if (StartTimer != null && !initial) StartTimer();
 
     }
 
