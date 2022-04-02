@@ -8,6 +8,8 @@ public class Timer : MonoBehaviour
 
     private Slider timer;
 
+    private IEnumerator coroutine;
+
 
 
     void Start() {
@@ -31,8 +33,10 @@ public class Timer : MonoBehaviour
 
 
     public void triggerTimer() {
+        if (coroutine != null) StopCoroutine(coroutine);
         float length = StoryEngine.currentStorylet.tape.length;
-        StartCoroutine(countDown(length));
+        coroutine = countDown(length);
+        StartCoroutine(coroutine);
     }
 
 
