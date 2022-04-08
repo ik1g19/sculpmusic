@@ -39,6 +39,7 @@ public class Storylet : MonoBehaviour
         // effects = gameObject.GetComponent<StoryletEffects>();
 
         if (startingStorylet) {
+            StoryEngine.selectedStorylet = this;
             StoryEngine.currentStorylet = this;
             if (OnClick != null) OnClick(this);
         }

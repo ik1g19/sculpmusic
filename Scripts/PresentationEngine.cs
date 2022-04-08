@@ -78,11 +78,12 @@ public class PresentationEngine : MonoBehaviour
 
     public void tapeFinished(bool changeStorylet) {
         Debug.Log(StoryEngine.currentStorylet.text);
+
+        if (initial && changeStorylet) initial = false;
+
         if (  circleInterface && (changeStorylet || initial)  ) tapeEndUpdateInterfaceCircle();
 
         else if (changeStorylet || initial) tapeEndUpdateInterface();
-
-        if (initial) initial = false;
     }
 
 
