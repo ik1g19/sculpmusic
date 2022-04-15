@@ -110,7 +110,7 @@ MonoBehaviour:
   defaultSprt: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
   availableSprt: {fileID: -2413806693520163455, guid: 16b0da376c1d47d4aa0472776c06a65d, type: 3}
   currentSprt: {fileID: -2413806693520163455, guid: 669580ca3bf7ee54787a54afdd87661a, type: 3}
-  selectedSprt: {fileID: -2413806693520163455, guid: 7ccede4286b39d442b639e4d2be4f33a, type: 3}
+  selectedSprt: {fileID: -2413806693520163455, guid: 669580ca3bf7ee54787a54afdd87661a, type: 3}
   text: 
   startingStorylet: 0
   tape: {fileID: 0}
@@ -161,7 +161,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -181,7 +181,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}

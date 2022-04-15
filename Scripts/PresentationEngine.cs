@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 //using Mathf;
 
 public class PresentationEngine : MonoBehaviour
@@ -15,6 +16,8 @@ public class PresentationEngine : MonoBehaviour
 
     public float RADIUS;
 
+    public Text text;
+
     public delegate void MoveCamera();
     public static event MoveCamera PanCamera;
 
@@ -27,6 +30,8 @@ public class PresentationEngine : MonoBehaviour
     {
         InteractionEngine.OnClickIE += storyletClicked;
         InteractionEngine.OnTapeEndIE += tapeFinished;
+        Storylet.OnHover += storyletHovered;
+        Storylet.HoverCancel += storyletUnHovered;
     }
 
 
@@ -35,6 +40,8 @@ public class PresentationEngine : MonoBehaviour
     {
         InteractionEngine.OnClickIE -= storyletClicked;
         InteractionEngine.OnTapeEndIE -= tapeFinished;
+        Storylet.OnHover += storyletHovered;
+        Storylet.HoverCancel += storyletUnHovered;
     }
 
 
@@ -44,6 +51,18 @@ public class PresentationEngine : MonoBehaviour
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
         circleInterface = setCircleInterface;
+    }
+
+
+
+    public void storyletHovered(Storylet storylet) {
+        text.text = storylet.text;
+    }
+
+
+
+    public void storyletUnHovered() {
+        text.text = "";
     }
 
 
@@ -77,13 +96,15 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void tapeFinished(bool changeStorylet) {
-        Debug.Log(StoryEngine.currentStorylet.text);
+        //Debug.Log(StoryEngine.currentStorylet.text);
 
         if (initial && changeStorylet) initial = false;
 
         if (  circleInterface && (changeStorylet || initial)  ) tapeEndUpdateInterfaceCircle();
 
         else if (changeStorylet || initial) tapeEndUpdateInterface();
+
+        if (PanCamera != null && !initial) PanCamera();
     }
 
 
@@ -121,7 +142,7 @@ public class PresentationEngine : MonoBehaviour
 
         StoryEngine.currentStorylet.spriteToCurrent();
 
-        if (PanCamera != null && !initial) PanCamera();
+        // if (PanCamera != null && !initial) PanCamera();
 
         if (StartTimer != null && !initial) StartTimer();
 

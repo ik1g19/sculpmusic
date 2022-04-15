@@ -25,6 +25,12 @@ public class Storylet : MonoBehaviour
     public delegate void ClickedStorylet(Storylet storylet);
     public static event ClickedStorylet OnClick;
 
+    public delegate void HoverStorylet(Storylet storylet);
+    public static event HoverStorylet OnHover;
+
+
+    public delegate void CancelHover();
+    public static event CancelHover HoverCancel;
 
 
     void Start()
@@ -78,6 +84,22 @@ public class Storylet : MonoBehaviour
     private void OnMouseDown() {
         if (available) {
             if (OnClick != null) OnClick(this);
+        }
+    }
+
+
+
+    private void OnMouseOver() {
+        if (available) {
+            if (OnHover != null) OnHover(this);
+        }
+    }
+
+
+
+    private void OnMouseExit() {
+        if (available) {
+            if (HoverCancel != null) HoverCancel();
         }
     }
 
