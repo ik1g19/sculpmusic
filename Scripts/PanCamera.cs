@@ -6,6 +6,7 @@ public class PanCamera : MonoBehaviour
 {
     public Vector3 velocity = Vector3.zero;
     public float panDuration = 3.0f;
+    public float zoomDuration = 3.0f;
 
 
 
@@ -17,6 +18,12 @@ public class PanCamera : MonoBehaviour
 
     void triggerCameraPan() {
         StartCoroutine(panCamera(StoryEngine.currentStorylet.gameObject.transform.position - new Vector3(0,0,10)));
+    }
+
+
+
+    void triggerCameraZoom() {
+        StartCoroutine(zoomCamera(250.0f));
     }
 
 
@@ -50,9 +57,39 @@ public class PanCamera : MonoBehaviour
 
 
 
+    IEnumerator zoomCamera(float size) {
+        float startPos = gameObject.GetComponent<Camera>().orthographicSize;
+        float timeElapsed = 0.0f;
+
+        // while (timeElapsed < panDuration) {
+        // //while (!transform.position.Equals(destination)) {
+        //     transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, panDuration);
+
+        //     timeElapsed += Time.deltaTime;
+
+        //     yield return null;
+        // }
+
+        while (timeElapsed < zoomDuration) {
+        //while (!transform.position.Equals(destination)) {
+            float t = timeElapsed / zoomDuration;
+
+            t = t * t * (3f - 2f * t);
+            gameObject.GetComponent<Camera>().orthographicSize = Mathf.Lerp(startPos, size, t);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        gameObject.GetComponent<Camera>().orthographicSize = size;
+    }
+
+
+
     void OnEnable()
     {
         PresentationEngine.PanCamera += triggerCameraPan;
+        PresentationEngine.CameraZoom += triggerCameraZoom;
     }
 
 
@@ -60,5 +97,6 @@ public class PanCamera : MonoBehaviour
     void OnDisable()
     {
         PresentationEngine.PanCamera -= triggerCameraPan;
+        PresentationEngine.CameraZoom += triggerCameraZoom;
     }
 }

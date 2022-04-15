@@ -534,8 +534,8 @@ Canvas:
   m_GameObject: {fileID: 409911642}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -624,7 +624,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 210.35786
+  orthographic size: 1027.1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -669,6 +669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   panDuration: 1.52
+  zoomDuration: 10.09
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RippleMaterial: {fileID: 2100000, guid: 7167a8ca4569abb478a6708012f2fbec, type: 2}
-  MaxAmount: 18.83
+  MaxAmount: 7.8
   Friction: 0.991
 --- !u!1 &537087433
 GameObject:
@@ -1070,15 +1071,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2967756106286420594, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2967756106286420594, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
-      propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2967756106286420594, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967756106286420594, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_Color.r
-      value: 0.8169508
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5769148131742619063, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: bar
@@ -1743,7 +1744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 518, y: 76}
+  m_AnchoredPosition: {x: -366, y: 31}
   m_SizeDelta: {x: 326.1813, y: 132.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163758094
@@ -1779,7 +1780,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1163758095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2073,7 +2074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37fc56dd92cde7429373b70b72f645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setCircleInterface: 0
+  setCircleInterface: 1
   RADIUS: 236
   text: {fileID: 1163758094}
 --- !u!4 &1640448495
@@ -2345,7 +2346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241, y: -114}
+  m_AnchoredPosition: {x: -417, y: -215}
   m_SizeDelta: {x: 200.6082, y: 44.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1883388060

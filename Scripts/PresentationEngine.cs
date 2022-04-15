@@ -21,6 +21,9 @@ public class PresentationEngine : MonoBehaviour
     public delegate void MoveCamera();
     public static event MoveCamera PanCamera;
 
+    public delegate void ZoomCamera();
+    public static event ZoomCamera CameraZoom;
+
     public delegate void Timer();
     public static event Timer StartTimer;
 
@@ -51,6 +54,7 @@ public class PresentationEngine : MonoBehaviour
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
         circleInterface = setCircleInterface;
+        if (CameraZoom != null) CameraZoom();
     }
 
 
