@@ -12,6 +12,8 @@ public class Storylet : MonoBehaviour
     public Sprite currentSprt;
     public Sprite selectedSprt;
     public string text;
+    public int level;
+    public bool useLevels = true;
 
     public bool available {get; set;}
     public bool startingStorylet;
@@ -19,8 +21,11 @@ public class Storylet : MonoBehaviour
     private TapePlayer tapePlayer;
     public AudioClip tape;
 
+    public bool orGuard2;
     public List<Flags> guard;
-    public List<Flags> effects;
+    public List<Flags> secondaryGuard;
+    public List<Flags> toAdd;
+    public List<Flags> toRemove;
 
     public delegate void ClickedStorylet(Storylet storylet);
     public static event ClickedStorylet OnClick;
@@ -105,9 +110,23 @@ public class Storylet : MonoBehaviour
 
 
 
-    public bool checkAvailable(List<Flags> state) {
-        return available =  guard.Select(  f => state.Contains(f)  ).ToList()
+    public bool checkAvailable(int level, List<Flags> state) {
+        bool guard1 =  guard.Select(  f => state.Contains(f)  ).ToList()
 
                                  .Aggregate(  true, (fold, next) => fold && next  );
+
+        if (useLevels) guard1 = guard1 && ((level + 1 == this.level)  ||  (level - 1 == this.level));
+        
+        if (orGuard2) {
+            bool guard2 =  secondaryGuard.Select(  f => state.Contains(f)  ).ToList()
+
+                                        .Aggregate(  true, (fold, next) => fold && next  );
+
+            if (useLevels) guard2 = guard2 && ((level + 1 == this.level)  ||  (level - 1 == this.level));
+
+            return guard1 || guard2;
+        }
+
+        return guard1;
     }
 }

@@ -57,7 +57,7 @@ public class StoryCollection
 
 
 
-    public void flagAvailableStorylets(List<Flags> state) {
+    public void flagAvailableStorylets(int level, List<Flags> state) {
         // return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
 
         //                 .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()
@@ -65,7 +65,7 @@ public class StoryCollection
         //                 .Select(sPair => sPair.sGObj).ToList();
         storylets.ForEach(s => s.GetComponent<Storylet>().available = false);
 
-        storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(state)).ToList()
+        storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(level, state)).ToList()
                  .ForEach(s => s.GetComponent<Storylet>().available = true);
     }
 

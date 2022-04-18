@@ -42,7 +42,7 @@ public class TapePlayer : MonoBehaviour
             if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
             
             play(StoryEngine.currentStorylet.tape);
-            Debug.Log("test");
+            
             yield return new WaitForSeconds(StoryEngine.currentStorylet.tape.length-0.05f);
             
         }

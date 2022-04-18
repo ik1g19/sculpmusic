@@ -6,12 +6,12 @@ using System;
 public enum Flags
 {
     start,
-    arpeggio,
-    riffA,
-    riffB,
     mellotron,
     synth,
     lofiRhythm1,
     lofiRhythym2,
-    unreachable
+    CAC,
+    CDeCsus,
+    lowpass,
+    unreachable,
 }

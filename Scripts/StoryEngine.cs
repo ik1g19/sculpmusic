@@ -8,7 +8,9 @@ public class StoryEngine : MonoBehaviour
 {
     private GameObject prefab;
     private StoryCollection sCollection;
-    private List<Flags> state;
+    [SerializeField]
+    public List<Flags> state;
+    public int level = 0;
     private TapePlayer tapePlayer;
     //private Text stateText;
 
@@ -50,9 +52,20 @@ public class StoryEngine : MonoBehaviour
             changeStorylet = true;
         }
 
-        state = selectedStorylet.effects;
+        // if (changeStorylet) {
+        //     if (selectedStorylet.upVisit) level++;
+        //     else level--;
 
-        sCollection.flagAvailableStorylets(state);
+        //     selectedStorylet.upVisit = !selectedStorylet.upVisit;
+        // }
+        if (changeStorylet) level = selectedStorylet.level;
+
+        state.AddRange(selectedStorylet.toAdd);
+        state = state.Distinct().ToList();
+
+        selectedStorylet.toRemove.ForEach(f => state.Remove(f));
+
+        sCollection.flagAvailableStorylets(level, state);
 
         StoryEngine.selectedStorylet.available = true;
 
