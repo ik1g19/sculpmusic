@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37fc56dd92cde7429373b70b72f645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setCircleInterface: 1
+  setCircleInterface: 0
   RADIUS: 236
   text: {fileID: 1163758094}
 --- !u!4 &1640448495

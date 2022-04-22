@@ -10,12 +10,29 @@ public class TapePlayer : MonoBehaviour
     public delegate void TapeFinished(bool changeStorylet);
     public static event TapeFinished OnTapeEnd;
 
+    private Coroutine running;
+    private float time;
+
+
+
+    void OnEnable()
+    {
+        Storylet.OnHover += storyletHovered;
+    }
+
+
+
+    void OnDisable()
+    {
+        Storylet.OnHover -= storyletHovered;
+    }
+
 
 
     void Start() {
         audioSrc = gameObject.GetComponent<AudioSource>();
         // if (OnTapeEnd != null) OnTapeEnd();
-        StartCoroutine(playTapes());
+        running = StartCoroutine(playTapes());
     }
 
 
@@ -57,4 +74,13 @@ public class TapePlayer : MonoBehaviour
 
 
     public bool isPlaying() {return audioSrc.isPlaying;}
+
+
+
+    public void storyletHovered(Storylet storylet) {
+        time = audioSrc.time;
+        StopCoroutine(running);
+        running = StartCoroutine(playTapes());
+        audioSrc.time = time;
+    }
 }
