@@ -32,17 +32,7 @@ public class PanCamera : MonoBehaviour
         Vector3 startPos = transform.position;
         float timeElapsed = 0.0f;
 
-        // while (timeElapsed < panDuration) {
-        // //while (!transform.position.Equals(destination)) {
-        //     transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, panDuration);
-
-        //     timeElapsed += Time.deltaTime;
-
-        //     yield return null;
-        // }
-
         while (timeElapsed < panDuration) {
-        //while (!transform.position.Equals(destination)) {
             float t = timeElapsed / panDuration;
 
             t = t * t * (3f - 2f * t);
@@ -61,17 +51,7 @@ public class PanCamera : MonoBehaviour
         float startPos = gameObject.GetComponent<Camera>().orthographicSize;
         float timeElapsed = 0.0f;
 
-        // while (timeElapsed < panDuration) {
-        // //while (!transform.position.Equals(destination)) {
-        //     transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, panDuration);
-
-        //     timeElapsed += Time.deltaTime;
-
-        //     yield return null;
-        // }
-
         while (timeElapsed < zoomDuration) {
-        //while (!transform.position.Equals(destination)) {
             float t = timeElapsed / zoomDuration;
 
             t = t * t * (3f - 2f * t);

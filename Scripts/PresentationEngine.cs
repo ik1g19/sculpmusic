@@ -33,8 +33,8 @@ public class PresentationEngine : MonoBehaviour
     {
         InteractionEngine.OnClickIE += storyletClicked;
         InteractionEngine.OnTapeEndIE += tapeFinished;
-        Storylet.OnHover += storyletHovered;
-        Storylet.HoverCancel += storyletUnHovered;
+        Storylet.HoverEnter += storyletHoverEnter;
+        Storylet.HoverExit += storyletHoverExit;
     }
 
 
@@ -43,8 +43,8 @@ public class PresentationEngine : MonoBehaviour
     {
         InteractionEngine.OnClickIE -= storyletClicked;
         InteractionEngine.OnTapeEndIE -= tapeFinished;
-        Storylet.OnHover += storyletHovered;
-        Storylet.HoverCancel += storyletUnHovered;
+        Storylet.HoverEnter -= storyletHoverEnter;
+        Storylet.HoverExit -= storyletHoverExit;
     }
 
 
@@ -59,13 +59,13 @@ public class PresentationEngine : MonoBehaviour
 
 
 
-    public void storyletHovered(Storylet storylet) {
+    public void storyletHoverEnter(Storylet storylet) {
         text.text = storylet.text;
     }
 
 
 
-    public void storyletUnHovered() {
+    public void storyletHoverExit() {
         text.text = "";
     }
 
