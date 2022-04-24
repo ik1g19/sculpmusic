@@ -114,14 +114,14 @@ public class Storylet : MonoBehaviour
 
                                  .Aggregate(  true, (fold, next) => fold && next  );
 
-        if (useLevels) guard1 = guard1 && ((level + 1 == this.level)  ||  (level - 1 == this.level));
+        if (useLevels) guard1 = guard1 && (level + 1 == this.level);
         
         if (orGuard2) {
             bool guard2 =  secondaryGuard.Select(  f => state.Contains(f)  ).ToList()
 
                                         .Aggregate(  true, (fold, next) => fold && next  );
 
-            if (useLevels) guard2 = guard2 && ((level + 1 == this.level)  ||  (level - 1 == this.level));
+            if (useLevels) guard2 = guard2 && (level + 1 == this.level) ;
 
             return guard1 || guard2;
         }
