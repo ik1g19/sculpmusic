@@ -17,9 +17,6 @@ public class StoryEngine : MonoBehaviour
     public static Storylet currentStorylet; 
     public static Storylet selectedStorylet;
 
-    public delegate void TapeFinishedSE(bool changeStorylet);
-    public static event TapeFinishedSE OnTapeEndSE;
-
 
 
     // Start is called before the first frame update
@@ -32,33 +29,12 @@ public class StoryEngine : MonoBehaviour
 
 
 
-    void OnEnable()
-    {
-        TapePlayer.OnTapeEnd += tapeFinished;
-    }
-
-
-
-    void OnDisable()
-    {
-        TapePlayer.OnTapeEnd -= tapeFinished;
-    }
-
-
-
-    public void tapeFinished(bool changeStorylet) {
-        if (  PresentationEngine.circleInterface && !PresentationEngine.initial && !changeStorylet  ) {
+    public void sculpt() {
+        if (  PresentationEngine.circleInterface && !PresentationEngine.initial  ) {
             StoryEngine.selectedStorylet = sCollection.randAvailableStorylet().GetComponent<Storylet>();
-            changeStorylet = true;
         }
 
-        // if (changeStorylet) {
-        //     if (selectedStorylet.upVisit) level++;
-        //     else level--;
-
-        //     selectedStorylet.upVisit = !selectedStorylet.upVisit;
-        // }
-        if (changeStorylet) level = selectedStorylet.level;
+        level = selectedStorylet.level;
 
         state.AddRange(selectedStorylet.toAdd);
         state = state.Distinct().ToList();
@@ -69,7 +45,8 @@ public class StoryEngine : MonoBehaviour
 
         StoryEngine.selectedStorylet.available = true;
 
-        if (OnTapeEndSE != null) OnTapeEndSE(changeStorylet);
+
+        StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
     } 
 
 }

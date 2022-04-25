@@ -16,13 +16,13 @@ public class PanCamera : MonoBehaviour
 
 
 
-    void triggerCameraPan() {
+    public void triggerCameraPan() {
         StartCoroutine(panCamera(StoryEngine.currentStorylet.gameObject.transform.position - new Vector3(0,0,10)));
     }
 
 
 
-    void triggerCameraZoom() {
+    public void triggerCameraZoom() {
         StartCoroutine(zoomCamera(250.0f));
     }
 
@@ -62,21 +62,5 @@ public class PanCamera : MonoBehaviour
         }
 
         gameObject.GetComponent<Camera>().orthographicSize = size;
-    }
-
-
-
-    void OnEnable()
-    {
-        PresentationEngine.PanCamera += triggerCameraPan;
-        PresentationEngine.CameraZoom += triggerCameraZoom;
-    }
-
-
-
-    void OnDisable()
-    {
-        PresentationEngine.PanCamera -= triggerCameraPan;
-        PresentationEngine.CameraZoom += triggerCameraZoom;
     }
 }

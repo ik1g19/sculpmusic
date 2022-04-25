@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class TapePlayer : MonoBehaviour
 {
@@ -16,27 +18,10 @@ public class TapePlayer : MonoBehaviour
     public float fadeDuration = 3.0f;
     private Storylet lastHovered;
 
-    public delegate void TapeFinished(bool changeStorylet);
-    public static event TapeFinished OnTapeEnd;
+    public UnityEvent onTapeChange;
 
     private Coroutine running;
     private float time;
-
-
-
-    void OnEnable()
-    {
-        Storylet.HoverEnter += storyletHoverEnter;
-        Storylet.HoverExit += storyletHoverExit;
-    }
-
-
-
-    void OnDisable()
-    {
-        Storylet.HoverEnter -= storyletHoverEnter;
-        Storylet.HoverExit -= storyletHoverExit;
-    }
 
 
 
@@ -45,32 +30,15 @@ public class TapePlayer : MonoBehaviour
         srcs = gameObject.GetComponents<AudioSource>();
         audioSrc = srcs[0];
         demoAudioSrc = srcs[1];
-        // if (OnTapeEnd != null) OnTapeEnd();
         running = StartCoroutine(playTapes());
-    }
-
-
-
-    void Update() {
-        //DEBUG
-        // if (Input.GetMouseButtonDown(1)) {
-        //     audioSrc.Stop();
-        //     if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
-        //     play(StoryEngine.currentStorylet.tape);
-        // }
-
-        // if (!audioSrc.isPlaying) {
-        //     // StartCoroutine(nearTapeEnd(StoryEngine.currentStorylet.tape.length));
-        //     if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
-        //     play(StoryEngine.currentStorylet.tape);
-        // }
     }
 
 
 
     private IEnumerator playTapes() {
         while (true) {
-            if (OnTapeEnd != null) OnTapeEnd(  !StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)  );
+            if (!StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)) onTapeChange.Invoke();
+            else if (PresentationEngine.initial) onTapeChange.Invoke();
 
             if (audioSrc.isPlaying) audioSrc.Stop();
             if (demoAudioSrc.isPlaying) demoAudioSrc.Stop();

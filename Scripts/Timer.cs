@@ -18,20 +18,6 @@ public class Timer : MonoBehaviour
 
 
 
-    void OnEnable()
-    {
-        PresentationEngine.StartTimer += triggerTimer;
-    }
-
-
-
-    void OnDisable()
-    {
-        PresentationEngine.StartTimer -= triggerTimer;
-    }
-
-
-
     public void triggerTimer() {
         if (coroutine != null) StopCoroutine(coroutine);
         float length = StoryEngine.currentStorylet.tape.length;

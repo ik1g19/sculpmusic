@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Events;
+using System;
+
+[Serializable]
+public class StoryletEvent : UnityEvent <Storylet> { }
 
 public class Storylet : MonoBehaviour
 {
@@ -22,37 +27,40 @@ public class Storylet : MonoBehaviour
     private TapePlayer tapePlayer;
     public AudioClip tape;
 
+    private PresentationEngine presentationEngine;
+
+    private InteractionEngine interactionEngine;
+
     public bool orGuard2;
     public List<Flags> guard;
     public List<Flags> secondaryGuard;
     public List<Flags> toAdd;
     public List<Flags> toRemove;
 
-    public delegate void ClickedStorylet(Storylet storylet);
-    public static event ClickedStorylet OnClick;
-
-    public delegate void StartHover(Storylet storylet);
-    public static event StartHover HoverEnter;
-
-    public delegate void CancelHover();
-    public static event CancelHover HoverExit;
+    public StoryletEvent onStoryletClick;
+    public StoryletEvent onHoverEnter;
+    public UnityEvent onHoverExit;
 
 
     void Start()
     {
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
-        
-        //text = gameObject.GetComponentInChildren<Text>();
-        //text.text = condition.ToString();
-        //available = false;
+        presentationEngine = GameObject.FindWithTag("PresentationEngine").GetComponent<PresentationEngine>();
+        interactionEngine = GameObject.FindWithTag("InteractionEngine").GetComponent<InteractionEngine>();
 
-        // guard = gameObject.GetComponent<StoryletGuard>();
-        // effects = gameObject.GetComponent<StoryletEffects>();
+        onStoryletClick.AddListener(interactionEngine.updateSelectedStorylet);
+        onStoryletClick.AddListener(presentationEngine.storyletClicked);
+
+        onHoverEnter.AddListener(presentationEngine.storyletHoverEnter);
+        onHoverEnter.AddListener(tapePlayer.storyletHoverEnter);
+
+        onHoverExit.AddListener(presentationEngine.storyletHoverExit);
+        onHoverExit.AddListener(tapePlayer.storyletHoverExit);
 
         if (startingStorylet) {
             StoryEngine.selectedStorylet = this;
             StoryEngine.currentStorylet = this;
-            if (OnClick != null) OnClick(this);
+            onStoryletClick.Invoke(this);
         }
     }
 
@@ -87,25 +95,19 @@ public class Storylet : MonoBehaviour
 
 
     private void OnMouseDown() {
-        if (available) {
-            if (OnClick != null) OnClick(this);
-        }
+        if (available) onStoryletClick.Invoke(this);
     }
 
 
 
     private void OnMouseEnter() {
-        if (available) {
-            if (HoverEnter != null) HoverEnter(this);
-        }
+        if (available) onHoverEnter.Invoke(this);
     }
 
 
 
     private void OnMouseExit() {
-        if (available) {
-            if (HoverExit != null) HoverExit();
-        }
+        if (available) onHoverExit.Invoke();
     }
 
 

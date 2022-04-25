@@ -2433,8 +2433,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: click.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: click.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2457,8 +2469,28 @@ PrefabInstance:
       value: registerClick
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3817021510540670965, guid: ab076ca0af166614b839096c59671936, type: 3}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: trigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: test
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3817021510540670965, guid: ab076ca0af166614b839096c59671936, type: 3}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7619573205311239700, guid: 53a7ecb5e6b9626449d67cbd31517d41, type: 3}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: storyletClicked
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: click.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2469,12 +2501,28 @@ PrefabInstance:
       value: InteractionEngine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TapePlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onHoverEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TapePlayer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PresentationEngine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: click.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.AudioClip, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: trigger.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 542061807759936201, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
+      propertyPath: onStoryletClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Storylet, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2967756106286420592, guid: dc7362aca063f9e40a238dd32de7ace8, type: 3}
       propertyPath: m_Name
@@ -3280,7 +3328,7 @@ GameObject:
   - component: {fileID: 1503804643}
   m_Layer: 0
   m_Name: InteractionEngine
-  m_TagString: Untagged
+  m_TagString: InteractionEngine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3323,7 +3371,7 @@ GameObject:
   - component: {fileID: 1640448494}
   m_Layer: 0
   m_Name: PresentationEngine
-  m_TagString: Untagged
+  m_TagString: PresentationEngine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3343,6 +3391,51 @@ MonoBehaviour:
   setCircleInterface: 0
   RADIUS: 236
   text: {fileID: 1163758094}
+  cameraPan:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: PanCamera, Assembly-CSharp
+        m_MethodName: triggerCameraPan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  cameraZoom:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: PanCamera, Assembly-CSharp
+        m_MethodName: triggerCameraZoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  startTimer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1883388060}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
+        m_MethodName: triggerTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1640448495
 Transform:
   m_ObjectHideFlags: 0
@@ -3403,6 +3496,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 3
+  onTapeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1948489134}
+        m_TargetAssemblyTypeName: StoryEngine, Assembly-CSharp
+        m_MethodName: sculpt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1640448494}
+        m_TargetAssemblyTypeName: PresentationEngine, Assembly-CSharp
+        m_MethodName: updatePresentation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &1727854515
 AudioSource:
   m_ObjectHideFlags: 0

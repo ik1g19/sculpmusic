@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
-//using Mathf;
+using UnityEngine.Events;
 
 public class PresentationEngine : MonoBehaviour
 {
@@ -18,34 +18,10 @@ public class PresentationEngine : MonoBehaviour
 
     public Text text;
 
-    public delegate void MoveCamera();
-    public static event MoveCamera PanCamera;
+    public UnityEvent cameraPan;
+    public UnityEvent cameraZoom;
 
-    public delegate void ZoomCamera();
-    public static event ZoomCamera CameraZoom;
-
-    public delegate void Timer();
-    public static event Timer StartTimer;
-
-
-
-    void OnEnable()
-    {
-        InteractionEngine.OnClickIE += storyletClicked;
-        InteractionEngine.OnTapeEndIE += tapeFinished;
-        Storylet.HoverEnter += storyletHoverEnter;
-        Storylet.HoverExit += storyletHoverExit;
-    }
-
-
-
-    void OnDisable()
-    {
-        InteractionEngine.OnClickIE -= storyletClicked;
-        InteractionEngine.OnTapeEndIE -= tapeFinished;
-        Storylet.HoverEnter -= storyletHoverEnter;
-        Storylet.HoverExit -= storyletHoverExit;
-    }
+    public UnityEvent startTimer;
 
 
 
@@ -54,7 +30,7 @@ public class PresentationEngine : MonoBehaviour
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
         circleInterface = setCircleInterface;
-        if (CameraZoom != null) CameraZoom();
+        cameraZoom.Invoke();
     }
 
 
@@ -99,16 +75,12 @@ public class PresentationEngine : MonoBehaviour
 
 
 
-    public void tapeFinished(bool changeStorylet) {
-        //Debug.Log(StoryEngine.currentStorylet.text);
+    public void updatePresentation() {
+        if (  circleInterface  ) tapeEndUpdateInterfaceCircle();
 
-        if (initial && changeStorylet) initial = false;
+        else tapeEndUpdateInterface();
 
-        if (  circleInterface && (changeStorylet || initial)  ) tapeEndUpdateInterfaceCircle();
-
-        else if (changeStorylet || initial) tapeEndUpdateInterface();
-
-        if (PanCamera != null && !initial) PanCamera();
+        cameraPan.Invoke();
     }
 
 
@@ -148,7 +120,7 @@ public class PresentationEngine : MonoBehaviour
 
         // if (PanCamera != null && !initial) PanCamera();
 
-        if (StartTimer != null && !initial) StartTimer();
+        startTimer.Invoke();
 
     }
 

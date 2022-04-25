@@ -44,25 +44,7 @@ public class StoryCollection
 
 
 
-    // public StoryCollection availableStorylets(StoryState state) {
-    //     StoryCollection available = new StoryCollection();
-
-    //     foreach(GameObject s in storylets) {
-    //         Storylet storylet = s.GetComponent<Storylet>();
-    //         if (storylet.condition <= state.state) available.add(s);
-    //     }
-    //     //Debug.Log(available.storylets.Count);
-    //     return available;
-    // }
-
-
-
     public void flagAvailableStorylets(int level, List<Flags> state) {
-        // return storylets.Select(s =>  new {sGObj = s, sObj = s.GetComponent<Storylet>()}  ).AsEnumerable()
-
-        //                 .Where(  sPair => sPair.sObj.checkAvailable(state)  ).ToList()
-
-        //                 .Select(sPair => sPair.sGObj).ToList();
         storylets.ForEach(s => s.GetComponent<Storylet>().available = false);
 
         storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(level, state)).ToList()
@@ -74,15 +56,6 @@ public class StoryCollection
     public List<GameObject> getAvailableStorylets() {
         return storylets.Where(s => s.GetComponent<Storylet>().available).ToList();
     }
-
-
-
-    // private bool checkAvailable(StoryletGuard storyletGuard, StoryState storyState) {
-    //     if (  ((storyState.bar - 1) <= storyletGuard.bar) && (storyletGuard.bar <= (storyState.bar + 1))  ) {
-    //         if (storyState.harmony.Equals(storyletGuard.harmony)) return true;
-    //     }
-    //     return false;
-    // }
 
 
 

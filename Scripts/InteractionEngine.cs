@@ -2,37 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Events;
 
 public class InteractionEngine : MonoBehaviour
 {
     private StoryCollection sCollection;
 
-    public delegate void TapeFinishedIE(bool changeStorylet);
-    public static event TapeFinishedIE OnTapeEndIE;
-
-    public delegate void ClickedStoryletIE(Storylet storylet);
-    public static event ClickedStoryletIE OnClickIE;
-
 
 
     void Start() {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
-    }
-
-
-
-    void OnEnable()
-    {
-        Storylet.OnClick += storyletClicked;
-        StoryEngine.OnTapeEndSE += tapeFinished;
-    }
-
-
-
-    void OnDisable()
-    {
-        Storylet.OnClick -= storyletClicked;
-        StoryEngine.OnTapeEndSE -= tapeFinished;
     }
 
 
@@ -48,16 +27,7 @@ public class InteractionEngine : MonoBehaviour
 
 
 
-    public void storyletClicked(Storylet storylet) {
+    public void updateSelectedStorylet(Storylet storylet) {
         StoryEngine.selectedStorylet = storylet;
-        if (OnClickIE != null) OnClickIE(storylet);
-    }
-
-
-
-    public void tapeFinished(bool changeStorylet) {
-        StoryEngine.currentStorylet = StoryEngine.selectedStorylet;
-
-        if (OnTapeEndIE != null) OnTapeEndIE(changeStorylet);
     }
 }
