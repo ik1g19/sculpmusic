@@ -13,6 +13,7 @@ public class Storylet : MonoBehaviour
     public Sprite selectedSprt;
     public string text;
     public int level;
+    public List<int> permittedLevles;
     public bool useLevels = true;
 
     public bool available {get; set;}
@@ -112,16 +113,16 @@ public class Storylet : MonoBehaviour
     public bool checkAvailable(int level, List<Flags> state) {
         bool guard1 =  guard.Select(  f => state.Contains(f)  ).ToList()
 
-                                 .Aggregate(  true, (fold, next) => fold && next  );
+                            .Aggregate(  true, (fold, next) => fold && next  );
 
-        if (useLevels) guard1 = guard1 && (level + 1 == this.level);
+        if (useLevels) guard1 = guard1 && permittedLevles.Contains(level);
         
         if (orGuard2) {
             bool guard2 =  secondaryGuard.Select(  f => state.Contains(f)  ).ToList()
 
-                                        .Aggregate(  true, (fold, next) => fold && next  );
+                                         .Aggregate(  true, (fold, next) => fold && next  );
 
-            if (useLevels) guard2 = guard2 && (level + 1 == this.level) ;
+            if (useLevels) guard2 = guard2 && permittedLevles.Contains(level);
 
             return guard1 || guard2;
         }
