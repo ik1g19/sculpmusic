@@ -23,6 +23,9 @@ public class TapePlayer : MonoBehaviour
     private Coroutine running;
     private float time;
 
+    private Coroutine fadeDemoIn;
+    private Coroutine fadeToReset;
+
 
 
     void Start() {
@@ -66,6 +69,8 @@ public class TapePlayer : MonoBehaviour
 
 
     public void storyletHoverEnter(Storylet storylet) {
+        if (fadeToReset != null) StopCoroutine(fadeToReset);
+
         demoVolumeStart = demoAudioSrc.volume;
         srcVolumeStart = audioSrc.volume;
 
@@ -75,7 +80,7 @@ public class TapePlayer : MonoBehaviour
         play(demoAudioSrc, storylet.tape);
         demoAudioSrc.time = audioSrc.time;
 
-        StartCoroutine(fadeDemo());
+        fadeDemoIn = StartCoroutine(fadeDemo());
 
         lastHovered = storylet;
     }
@@ -84,18 +89,15 @@ public class TapePlayer : MonoBehaviour
 
     IEnumerator fadeDemo() {
         while (timeHovered < fadeDuration) {
-            if (hovering) {
-                float t = timeHovered / fadeDuration;
+            float t = timeHovered / fadeDuration;
 
-                t = t * t * (3f - 2f * t);
-                demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 1, t);
-                audioSrc.volume = 1.0f - demoAudioSrc.volume;
+            t = t * t * (3f - 2f * t);
+            demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 1, t);
+            audioSrc.volume = 1.0f - demoAudioSrc.volume;
 
-                timeHovered += Time.deltaTime;
+            timeHovered += Time.deltaTime;
 
-                yield return null;
-            }
-            else yield break;
+            yield return null;
         }
 
         demoAudioSrc.volume = 1.0f;
@@ -105,6 +107,8 @@ public class TapePlayer : MonoBehaviour
 
 
     public void storyletHoverExit() {
+        StopCoroutine(fadeDemoIn);
+
         demoVolumeStart = demoAudioSrc.volume;
         srcVolumeStart = audioSrc.volume;
 
@@ -112,25 +116,22 @@ public class TapePlayer : MonoBehaviour
         hovering = false;
 
 
-        StartCoroutine(fadeReset());
+        fadeToReset = StartCoroutine(fadeReset());
     }
 
 
 
     IEnumerator fadeReset() {
         while (timeNotHovered < fadeDuration) {
-            if (!hovering) {
-                float t = timeNotHovered / fadeDuration;
+            float t = timeNotHovered / fadeDuration;
 
-                t = t * t * (3f - 2f * t);
-                demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 0, t);
-                audioSrc.volume = 1.0f - demoAudioSrc.volume;
+            t = t * t * (3f - 2f * t);
+            demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 0, t);
+            audioSrc.volume = 1.0f - demoAudioSrc.volume;
 
-                timeNotHovered += Time.deltaTime;
+            timeNotHovered += Time.deltaTime;
 
-                yield return null;
-            }
-            else yield break;
+            yield return null;
         }
 
         demoAudioSrc.volume = 0.0f;
