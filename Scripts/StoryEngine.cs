@@ -29,11 +29,11 @@ public class StoryEngine : MonoBehaviour
 
 
 
-    public void sculpt() {
-        if (  PresentationEngine.circleInterface && !PresentationEngine.initial  ) {
-            StoryEngine.selectedStorylet = sCollection.randAvailableStorylet().GetComponent<Storylet>();
-        }
+    public void selectNextStorylet() {StoryEngine.selectedStorylet = sCollection.randAvailableStorylet().GetComponent<Storylet>();}
 
+
+
+    public void sculpt() {
         level = selectedStorylet.level;
         
         Effects effects = selectedStorylet.effects;

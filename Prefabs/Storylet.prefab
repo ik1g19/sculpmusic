@@ -104,22 +104,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329629972203df3459795235e6efc224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textOnHover: 1
+  demoOnHover: 0
   sprtRenderer: {fileID: 2967756106286420594}
   defaultSprt: {fileID: -2413806693520163455, guid: 17cd5d7610a08494fa4a625f5a83612b, type: 3}
   availableSprt: {fileID: -2413806693520163455, guid: 16b0da376c1d47d4aa0472776c06a65d, type: 3}
   currentSprt: {fileID: -2413806693520163455, guid: 669580ca3bf7ee54787a54afdd87661a, type: 3}
   selectedSprt: {fileID: -2413806693520163455, guid: 669580ca3bf7ee54787a54afdd87661a, type: 3}
   text: 
-  level: 0
-  permittedLevles: 
-  useLevels: 1
   startingStorylet: 0
   tape: {fileID: 0}
-  orGuard2: 0
-  guard: 
-  secondaryGuard: 
-  toAdd: 
-  toRemove: 
+  level: 0
+  permittedLevels: 
+  guards: []
+  effects:
+    toAdd: 
+    toRemove: 
   onStoryletClick:
     m_PersistentCalls:
       m_Calls: []

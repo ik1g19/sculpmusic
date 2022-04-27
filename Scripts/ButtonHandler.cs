@@ -23,5 +23,6 @@ public class ButtonHandler : MonoBehaviour
 
         b_2.onClick.AddListener(() => cmrMovement.triggerCameraZoom(1f));
         b_2.onClick.AddListener(() => cmrMovement.triggerCameraPan(b_2.transform.position));
+        b_2.onClick.AddListener(() => scnHandler.pauseThenLoadScene(cmrMovement.zoomDuration, "Interface2"));
     }
 }

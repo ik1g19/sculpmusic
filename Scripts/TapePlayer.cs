@@ -14,10 +14,13 @@ public class TapePlayer : MonoBehaviour
 
     private float timeHovered;
     private float timeNotHovered;
-    public float fadeDuration = 3.0f;
+    public float fadeInDuration = 5.0f;
+    public float crossFadeDuration = 3.0f;
     private Storylet lastHovered;
 
+    public UnityEvent onTapePlayerStart;
     public UnityEvent onTapeChange;
+    public UnityEvent onTapeEnd;
 
     private Coroutine running;
     private float time;
@@ -32,6 +35,9 @@ public class TapePlayer : MonoBehaviour
         srcs = gameObject.GetComponents<AudioSource>();
         audioSrc = srcs[0];
         demoAudioSrc = srcs[1];
+
+        onTapePlayerStart.Invoke();
+
         running = StartCoroutine(playTapes());
         srcVolumeStart = audioSrc.volume;
         StartCoroutine(fadeSrcIn());
@@ -40,18 +46,17 @@ public class TapePlayer : MonoBehaviour
 
 
     private IEnumerator playTapes() {
-        while (true) {
-            if (!StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)) onTapeChange.Invoke();
-            else if (PresentationEngine.initial) onTapeChange.Invoke();
-
-            if (audioSrc.isPlaying) audioSrc.Stop();
-            if (demoAudioSrc.isPlaying) demoAudioSrc.Stop();
-            
+        while (true) {            
             play(audioSrc, StoryEngine.currentStorylet.tape);
             if (lastHovered != null) play(demoAudioSrc, lastHovered.tape);
             
             yield return new WaitForSeconds(StoryEngine.currentStorylet.tape.length-0.05f);
-            
+
+            if (!StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)) onTapeChange.Invoke();
+            onTapeEnd.Invoke();
+
+            if (audioSrc.isPlaying) audioSrc.Stop();
+            if (demoAudioSrc.isPlaying) demoAudioSrc.Stop();
         }
     }
 
@@ -88,8 +93,8 @@ public class TapePlayer : MonoBehaviour
 
 
     IEnumerator fadeDemo() {
-        while (timeHovered < fadeDuration) {
-            float t = timeHovered / fadeDuration;
+        while (timeHovered < crossFadeDuration) {
+            float t = timeHovered / crossFadeDuration;
 
             t = t * t * (3f - 2f * t);
             demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 1, t);
@@ -121,8 +126,8 @@ public class TapePlayer : MonoBehaviour
 
 
     IEnumerator fadeReset() {
-        while (timeNotHovered < fadeDuration) {
-            float t = timeNotHovered / fadeDuration;
+        while (timeNotHovered < crossFadeDuration) {
+            float t = timeNotHovered / crossFadeDuration;
 
             t = t * t * (3f - 2f * t);
             demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 0, t);
@@ -142,8 +147,8 @@ public class TapePlayer : MonoBehaviour
     IEnumerator fadeSrcIn() {
         float timeElapsed = 0f;
 
-        while (timeElapsed < fadeDuration) {
-            float t = timeElapsed / fadeDuration;
+        while (timeElapsed < fadeInDuration) {
+            float t = timeElapsed / fadeInDuration;
 
             t = t * t * (3f - 2f * t);
             audioSrc.volume = Mathf.Lerp(srcVolumeStart, 1, t);

@@ -13,11 +13,6 @@ public class PresentationEngine : MonoBehaviour
 {
     StoryCollection sCollection;
 
-    public static bool circleInterface;
-    public bool setCircleInterface;
-
-    public static bool initial = true;
-
     public float RADIUS;
 
     public Text text;
@@ -25,15 +20,12 @@ public class PresentationEngine : MonoBehaviour
     public Vector3Event cameraPan;
     public UnityEvent cameraZoom;
 
-    public UnityEvent startTimer;
-
 
 
     // Start is called before the first frame update
     void Start()
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
-        circleInterface = setCircleInterface;
         cameraZoom.Invoke();
     }
 
@@ -52,37 +44,20 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void storyletClicked(Storylet storylet) {
-        if (!circleInterface) {
-            Storylet selected = StoryEngine.selectedStorylet;
+        Storylet selected = StoryEngine.selectedStorylet;
 
-            if (selected != null) {
-                if (selected.available) selected.spriteToAvailable();
-                else selected.spriteToDefault();
-            }
-
-            storylet.spriteToSelected();
+        if (selected != null) {
+            if (selected.available) selected.spriteToAvailable();
+            else selected.spriteToDefault();
         }
 
-
-        else {
-            //TO RPELACE
-            Storylet selected = StoryEngine.selectedStorylet;
-
-            if (selected != null) {
-                if (selected.available) selected.spriteToAvailable();
-                else selected.spriteToDefault();
-            }
-
-            storylet.spriteToSelected();
-        }
+        storylet.spriteToSelected();
     }
 
 
 
     public void updatePresentation() {
-        if (  circleInterface  ) tapeEndUpdateInterfaceCircle();
-
-        else tapeEndUpdateInterface();
+        tapeEndUpdateInterfaceCircle();
 
         cameraPan.Invoke(StoryEngine.currentStorylet.transform.position);
     }
@@ -121,10 +96,6 @@ public class PresentationEngine : MonoBehaviour
         available.ForEach(  s => {s.SetActive(true); s.GetComponent<Storylet>().spriteToAvailable();}  );
 
         StoryEngine.currentStorylet.spriteToCurrent();
-
-        // if (PanCamera != null && !initial) PanCamera();
-
-        startTimer.Invoke();
 
     }
 
