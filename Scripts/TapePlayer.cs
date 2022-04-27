@@ -33,6 +33,8 @@ public class TapePlayer : MonoBehaviour
         audioSrc = srcs[0];
         demoAudioSrc = srcs[1];
         running = StartCoroutine(playTapes());
+        srcVolumeStart = audioSrc.volume;
+        StartCoroutine(fadeSrcIn());
     }
 
 
@@ -132,6 +134,25 @@ public class TapePlayer : MonoBehaviour
         }
 
         demoAudioSrc.volume = 0.0f;
+        audioSrc.volume = 1.0f;
+    }
+
+
+
+    IEnumerator fadeSrcIn() {
+        float timeElapsed = 0f;
+
+        while (timeElapsed < fadeDuration) {
+            float t = timeElapsed / fadeDuration;
+
+            t = t * t * (3f - 2f * t);
+            audioSrc.volume = Mathf.Lerp(srcVolumeStart, 1, t);
+
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
         audioSrc.volume = 1.0f;
     }
 }

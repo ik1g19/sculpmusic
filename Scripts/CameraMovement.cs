@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanCamera : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     public Vector3 velocity = Vector3.zero;
     public float panDuration = 3.0f;
@@ -11,19 +11,20 @@ public class PanCamera : MonoBehaviour
 
 
     void Start() {
-        transform.position = StoryEngine.currentStorylet.gameObject.transform.position - new Vector3(0,0,10);
+        Storylet startingStorylet = StoryEngine.currentStorylet;
+        if (startingStorylet != null) transform.position = startingStorylet.gameObject.transform.position - new Vector3(0,0,10);
     }
 
 
 
-    public void triggerCameraPan() {
-        StartCoroutine(panCamera(StoryEngine.currentStorylet.gameObject.transform.position - new Vector3(0,0,10)));
+    public void triggerCameraPan(Vector3 pos) {
+        StartCoroutine(panCamera(pos - new Vector3(0,0,10)));
     }
 
 
 
-    public void triggerCameraZoom() {
-        StartCoroutine(zoomCamera(250.0f));
+    public void triggerCameraZoom(float orthoSize) {
+        StartCoroutine(zoomCamera(orthoSize));
     }
 
 

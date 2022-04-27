@@ -4,6 +4,10 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
+
+[Serializable]
+public class Vector3Event : UnityEvent <Vector3> { }
 
 public class PresentationEngine : MonoBehaviour
 {
@@ -18,7 +22,7 @@ public class PresentationEngine : MonoBehaviour
 
     public Text text;
 
-    public UnityEvent cameraPan;
+    public Vector3Event cameraPan;
     public UnityEvent cameraZoom;
 
     public UnityEvent startTimer;
@@ -80,7 +84,7 @@ public class PresentationEngine : MonoBehaviour
 
         else tapeEndUpdateInterface();
 
-        cameraPan.Invoke();
+        cameraPan.Invoke(StoryEngine.currentStorylet.transform.position);
     }
 
 
