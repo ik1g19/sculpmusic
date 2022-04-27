@@ -17,9 +17,6 @@ public class Storylet : MonoBehaviour
     public Sprite currentSprt;
     public Sprite selectedSprt;
     public string text;
-    public int level;
-    public List<int> permittedLevles;
-    public bool useLevels = true;
 
     public bool available {get; set;}
     public bool startingStorylet;
@@ -31,11 +28,12 @@ public class Storylet : MonoBehaviour
 
     private InteractionEngine interactionEngine;
 
-    public bool orGuard2;
-    public List<Flags> guard;
-    public List<Flags> secondaryGuard;
-    public List<Flags> toAdd;
-    public List<Flags> toRemove;
+    
+    public int level;
+    public List<int> permittedLevels;
+
+    public List<Guard> guards;
+    public Effects effects;
 
     public StoryletEvent onStoryletClick;
     public StoryletEvent onHoverEnter;
@@ -113,22 +111,20 @@ public class Storylet : MonoBehaviour
 
 
     public bool checkAvailable(int level, List<Flags> state) {
-        bool guard1 =  guard.Select(  f => state.Contains(f)  ).ToList()
+        if (guards.Count == 0) return permittedLevels.Contains(level);
 
-                            .Aggregate(  true, (fold, next) => fold && next  );
+        bool avlbl = false;
 
-        if (useLevels) guard1 = guard1 && permittedLevles.Contains(level);
-        
-        if (orGuard2) {
-            bool guard2 =  secondaryGuard.Select(  f => state.Contains(f)  ).ToList()
+        foreach (Guard guard in guards) {
+            bool satisfied =  guard.isSatisfied(state);
 
-                                         .Aggregate(  true, (fold, next) => fold && next  );
+            //Debug.Log(satisfied);
+            satisfied = satisfied && permittedLevels.Contains(level);
+            //Debug.Log(permittedLevels.Contains(level));
 
-            if (useLevels) guard2 = guard2 && permittedLevles.Contains(level);
-
-            return guard1 || guard2;
+            avlbl = avlbl || satisfied;
         }
 
-        return guard1;
+        return avlbl;
     }
 }

@@ -35,11 +35,13 @@ public class StoryEngine : MonoBehaviour
         }
 
         level = selectedStorylet.level;
+        
+        Effects effects = selectedStorylet.effects;
 
-        state.AddRange(selectedStorylet.toAdd);
+        state.AddRange(effects.toAdd);
         state = state.Distinct().ToList();
 
-        selectedStorylet.toRemove.ForEach(f => state.Remove(f));
+        effects.toRemove.ForEach(f => state.Remove(f));
 
         sCollection.flagAvailableStorylets(level, state);
 

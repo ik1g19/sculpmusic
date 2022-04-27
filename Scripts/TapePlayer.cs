@@ -14,7 +14,6 @@ public class TapePlayer : MonoBehaviour
 
     private float timeHovered;
     private float timeNotHovered;
-    private bool hovering = false;
     public float fadeDuration = 3.0f;
     private Storylet lastHovered;
 
@@ -75,7 +74,6 @@ public class TapePlayer : MonoBehaviour
         srcVolumeStart = audioSrc.volume;
 
         timeHovered = 0.0f;
-        hovering = true;
 
         play(demoAudioSrc, storylet.tape);
         demoAudioSrc.time = audioSrc.time;
@@ -113,7 +111,6 @@ public class TapePlayer : MonoBehaviour
         srcVolumeStart = audioSrc.volume;
 
         timeNotHovered = 0.0f;
-        hovering = false;
 
 
         fadeToReset = StartCoroutine(fadeReset());

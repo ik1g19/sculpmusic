@@ -5,7 +5,6 @@ using System;
 [Serializable]
 public enum Flags
 {
-    start,
     mellotron,
     synth,
     lofiRhythm1,
@@ -13,5 +12,5 @@ public enum Flags
     CAC,
     CDeCsus,
     lowpass,
-    unreachable,
+    unreachable
 }
