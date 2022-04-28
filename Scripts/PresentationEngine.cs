@@ -9,6 +9,9 @@ using System;
 [Serializable]
 public class Vector3Event : UnityEvent <Vector3> { }
 
+[Serializable]
+public class FloatEvent : UnityEvent <float,float> { }
+
 public class PresentationEngine : MonoBehaviour
 {
     StoryCollection sCollection;
@@ -18,7 +21,7 @@ public class PresentationEngine : MonoBehaviour
     public Text text;
 
     public Vector3Event cameraPan;
-    public UnityEvent cameraZoom;
+    public FloatEvent cameraZoom;
 
 
 
@@ -26,7 +29,7 @@ public class PresentationEngine : MonoBehaviour
     void Start()
     {
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
-        cameraZoom.Invoke();
+        cameraZoom.Invoke(1,250);
     }
 
 

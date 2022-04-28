@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Vector3 velocity = Vector3.zero;
+    public Camera camera;
+
     public float panDuration = 3.0f;
     public float zoomDuration = 3.0f;
 
@@ -12,56 +13,19 @@ public class CameraMovement : MonoBehaviour
 
     void Start() {
         Storylet startingStorylet = StoryEngine.currentStorylet;
-        if (startingStorylet != null) transform.position = startingStorylet.gameObject.transform.position - new Vector3(0,0,10);
+        if (startingStorylet != null) camera.transform.position = startingStorylet.gameObject.transform.position - new Vector3(0,0,10);
     }
 
 
 
     public void triggerCameraPan(Vector3 pos) {
-        StartCoroutine(panCamera(pos - new Vector3(0,0,10)));
+        pos -= new Vector3(0,0,10);
+        StartCoroutine(Animation.smoothStep((x) => transform.position = x, transform.position, pos, panDuration));
     }
 
 
 
-    public void triggerCameraZoom(float orthoSize) {
-        StartCoroutine(zoomCamera(orthoSize));
-    }
-
-
-
-    IEnumerator panCamera(Vector3 destination) {
-        Vector3 startPos = transform.position;
-        float timeElapsed = 0.0f;
-
-        while (timeElapsed < panDuration) {
-            float t = timeElapsed / panDuration;
-
-            t = t * t * (3f - 2f * t);
-            transform.position = Vector3.Lerp(startPos, destination, t);
-
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = destination;
-    }
-
-
-
-    IEnumerator zoomCamera(float size) {
-        float startPos = gameObject.GetComponent<Camera>().orthographicSize;
-        float timeElapsed = 0.0f;
-
-        while (timeElapsed < zoomDuration) {
-            float t = timeElapsed / zoomDuration;
-
-            t = t * t * (3f - 2f * t);
-            gameObject.GetComponent<Camera>().orthographicSize = Mathf.Lerp(startPos, size, t);
-
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        gameObject.GetComponent<Camera>().orthographicSize = size;
+    public void triggerCameraZoom(float size1, float size2) {
+        StartCoroutine(  Animation.smoothStep((x) => camera.orthographicSize = x, size1, size2, zoomDuration)  );
     }
 }
