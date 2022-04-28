@@ -2339,6 +2339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37fc56dd92cde7429373b70b72f645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textOnHover: 0
   RADIUS: 206.91
   text: {fileID: 1072577279}
   cameraPan:
@@ -2755,6 +2756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeSensitive: 1
   fadeInDuration: 5
+  fadeOutDuration: 7
   crossFadeDuration: 3
   onTapePlayerStart:
     m_PersistentCalls:
@@ -3683,8 +3685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1429031000}
+  tapePlayer: {fileID: 1031232387}
   circle: {fileID: 0}
   menuButton: {fileID: 1693254525}
+  timer: {fileID: 1432392406}
   onMenuLoad:
     m_PersistentCalls:
       m_Calls: []

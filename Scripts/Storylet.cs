@@ -65,7 +65,7 @@ public class Storylet : MonoBehaviour
         onHoverExit.AddListener(presentationEngine.storyletHoverExit);
         if (demoOnHover) onHoverExit.AddListener(tapePlayer.storyletHoverExit);
 
-        sceneHandler.onMenuLoad.AddListener(hideLine);
+        sceneHandler.onMenuLoad.AddListener(hide);
 
         if (startingStorylet) {
             StoryEngine.selectedStorylet = this;
@@ -142,7 +142,11 @@ public class Storylet : MonoBehaviour
 
 
 
-    public void hideLine() {
+    public void hide() {
+        onHoverEnter.RemoveAllListeners();
+        onHoverExit.RemoveAllListeners();
+        onStoryletClick.RemoveAllListeners();
+
         if (available) {
             LineRenderer lr = GetComponent<LineRenderer>();
             StartCoroutine(Animation.smoothStep(  (x) => lr.SetPosition(1, x), lr.GetPosition(1), transform.position, hideLineDuration  ));

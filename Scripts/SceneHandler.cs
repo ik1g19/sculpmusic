@@ -7,9 +7,11 @@ using UnityEngine.Events;
 public class SceneHandler : MonoBehaviour
 {
     public CameraMovement camera;
+    public TapePlayer tapePlayer;
     public Animation circle;
     private string scene;
     public GameObject menuButton;
+    public GameObject timer;
 
     [HideInInspector]
     public UnityEvent onMenuLoad;
@@ -53,9 +55,13 @@ public class SceneHandler : MonoBehaviour
     IEnumerator loadSequenceReverse() {
         camera.triggerCameraZoom(1f);
         onMenuLoad.Invoke();
-        yield return new WaitForSeconds(camera.zoomDuration);
-        Animation storyletCircle = StoryEngine.currentStorylet.gameObject.GetComponent<Animation>();
+        tapePlayer.fadeOut();
 
+        yield return new WaitForSeconds(camera.zoomDuration);
+        menuButton.SetActive(false);
+        if (timer != null) timer.SetActive(false);
+
+        Animation storyletCircle = StoryEngine.currentStorylet.gameObject.GetComponent<Animation>();
         float scaleDuration = 3f;
         storyletCircle.smoothScale(8f, 0f, scaleDuration);
         yield return new WaitForSeconds(scaleDuration);

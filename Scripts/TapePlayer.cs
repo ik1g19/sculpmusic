@@ -17,6 +17,7 @@ public class TapePlayer : MonoBehaviour
     private float timeHovered;
     private float timeNotHovered;
     public float fadeInDuration = 5.0f;
+    public float fadeOutDuration = 7.0f;
     public float crossFadeDuration = 3.0f;
     private Storylet lastHovered;
 
@@ -78,36 +79,52 @@ public class TapePlayer : MonoBehaviour
 
 
     public void storyletHoverEnter(Storylet storylet) {
-        if (fadeToReset != null) StopCoroutine(fadeToReset);
+        if (!storylet.Equals(StoryEngine.currentStorylet)) {
 
-        demoVolumeStart = demoAudioSrc.volume;
-        srcVolumeStart = audioSrc.volume;
 
-        timeHovered = 0.0f;
+            if (fadeToReset != null) StopCoroutine(fadeToReset);
 
-        play(demoAudioSrc, storylet.tape);
-        demoAudioSrc.time = audioSrc.time;
+            demoVolumeStart = demoAudioSrc.volume;
+            srcVolumeStart = audioSrc.volume;
 
-        fadeDemoIn = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
-                                                                    audioSrc.volume = 1f - demoAudioSrc.volume;},
-                                                            demoVolumeStart, 1, crossFadeDuration )  );
+            timeHovered = 0.0f;
 
-        lastHovered = storylet;
+            play(demoAudioSrc, storylet.tape);
+            demoAudioSrc.time = audioSrc.time;
+
+            fadeDemoIn = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
+                                                                        audioSrc.volume = 1f - demoAudioSrc.volume;},
+                                                                demoVolumeStart, 1, crossFadeDuration )  );
+
+            lastHovered = storylet;
+
+
+        }
     }
 
 
 
     public void storyletHoverExit(Storylet storylet) {
-        StopCoroutine(fadeDemoIn);
-
-        demoVolumeStart = demoAudioSrc.volume;
-        srcVolumeStart = audioSrc.volume;
-
-        timeNotHovered = 0.0f;
+        if (!storylet.Equals(StoryEngine.currentStorylet)) {
 
 
-        fadeToReset = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
-                                                                    audioSrc.volume = 1f - demoAudioSrc.volume;},
-                                                             demoVolumeStart, 0, crossFadeDuration )  );
+            StopCoroutine(fadeDemoIn);
+
+            demoVolumeStart = demoAudioSrc.volume;
+            srcVolumeStart = audioSrc.volume;
+
+            timeNotHovered = 0.0f;
+
+
+            fadeToReset = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
+                                                                        audioSrc.volume = 1f - demoAudioSrc.volume;},
+                                                                demoVolumeStart, 0, crossFadeDuration )  );
+
+                                                             
+        }
     }
+
+
+
+    public void fadeOut() {StartCoroutine(Animation.smoothStep(  (x) => audioSrc.volume = x, audioSrc.volume, 0f, fadeOutDuration  ));}
 }
