@@ -88,31 +88,11 @@ public class TapePlayer : MonoBehaviour
         play(demoAudioSrc, storylet.tape);
         demoAudioSrc.time = audioSrc.time;
 
-        //fadeDemoIn = StartCoroutine(fadeDemo());
         fadeDemoIn = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
                                                                     audioSrc.volume = 1f - demoAudioSrc.volume;},
                                                             demoVolumeStart, 1, crossFadeDuration )  );
 
         lastHovered = storylet;
-    }
-
-
-
-    IEnumerator fadeDemo() {
-        while (timeHovered < crossFadeDuration) {
-            float t = timeHovered / crossFadeDuration;
-
-            t = t * t * (3f - 2f * t);
-            demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 1, t);
-            audioSrc.volume = 1.0f - demoAudioSrc.volume;
-
-            timeHovered += Time.deltaTime;
-
-            yield return null;
-        }
-
-        demoAudioSrc.volume = 1.0f;
-        audioSrc.volume = 0.0f;
     }
 
 
@@ -126,26 +106,9 @@ public class TapePlayer : MonoBehaviour
         timeNotHovered = 0.0f;
 
 
-        fadeToReset = StartCoroutine(fadeReset());
-    }
-
-
-
-    IEnumerator fadeReset() {
-        while (timeNotHovered < crossFadeDuration) {
-            float t = timeNotHovered / crossFadeDuration;
-
-            t = t * t * (3f - 2f * t);
-            demoAudioSrc.volume = Mathf.Lerp(demoVolumeStart, 0, t);
-            audioSrc.volume = 1.0f - demoAudioSrc.volume;
-
-            timeNotHovered += Time.deltaTime;
-
-            yield return null;
-        }
-
-        demoAudioSrc.volume = 0.0f;
-        audioSrc.volume = 1.0f;
+        fadeToReset = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
+                                                                    audioSrc.volume = 1f - demoAudioSrc.volume;},
+                                                             demoVolumeStart, 0, crossFadeDuration )  );
     }
 
 
