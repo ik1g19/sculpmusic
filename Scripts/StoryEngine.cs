@@ -28,7 +28,6 @@ public class StoryEngine : MonoBehaviour
     }
 
 
-
     public void selectNextStorylet() {StoryEngine.selectedStorylet = sCollection.randAvailableStorylet().GetComponent<Storylet>();}
 
 

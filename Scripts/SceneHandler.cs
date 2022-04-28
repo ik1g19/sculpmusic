@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-    public void pauseThenLoadScene(float toWait, string scene) { StartCoroutine(pauseThenLoad(toWait, scene)); }
+    public Camera camera;
+    private float toWait;
+    
+    void Start() {toWait = camera.GetComponent<CameraMovement>().zoomDuration;}
 
-    IEnumerator pauseThenLoad(float toWait, string scene) {yield return new WaitForSeconds(toWait); SceneManager.LoadScene(scene);}
+    public void loadScene(string scene) { StartCoroutine(pauseThenLoad(scene)); }
+
+    IEnumerator pauseThenLoad(string scene) {yield return new WaitForSeconds(toWait); SceneManager.LoadScene(scene);}
 }

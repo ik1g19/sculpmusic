@@ -38,8 +38,11 @@ public class Storylet : MonoBehaviour
     public List<Guard> guards;
     public Effects effects;
 
+    [HideInInspector]
     public StoryletEvent onStoryletClick;
+    [HideInInspector]
     public StoryletEvent onHoverEnter;
+    [HideInInspector]
     public UnityEvent onHoverExit;
 
 

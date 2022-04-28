@@ -6,6 +6,8 @@ using System;
 
 public class TapePlayer : MonoBehaviour
 {
+    public bool timeSensitive;
+
     private AudioSource audioSrc;
     private float srcVolumeStart;
 
@@ -19,7 +21,7 @@ public class TapePlayer : MonoBehaviour
     private Storylet lastHovered;
 
     public UnityEvent onTapePlayerStart;
-    public UnityEvent onTapeChange;
+    public UnityEvent onTimeOut;
     public UnityEvent onTapeEnd;
 
     private Coroutine running;
@@ -52,7 +54,8 @@ public class TapePlayer : MonoBehaviour
             
             yield return new WaitForSeconds(StoryEngine.currentStorylet.tape.length-0.05f);
 
-            if (!StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet)) onTapeChange.Invoke();
+            if (StoryEngine.currentStorylet.Equals(StoryEngine.selectedStorylet) && timeSensitive) onTimeOut.Invoke();
+            
             onTapeEnd.Invoke();
 
             if (audioSrc.isPlaying) audioSrc.Stop();
