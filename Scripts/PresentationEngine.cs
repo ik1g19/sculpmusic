@@ -14,6 +14,8 @@ public class FloatEvent : UnityEvent <float,float> { }
 
 public class PresentationEngine : MonoBehaviour
 {
+    public bool textOnHover;
+
     StoryCollection sCollection;
 
     public float RADIUS;
@@ -37,14 +39,16 @@ public class PresentationEngine : MonoBehaviour
     public void storyletHoverEnter(Storylet storylet) {
         //string elements = "\nFeatures:\n";
         //foreach (Flags f in storylet.effects.toAdd) {elements += FlagHandling.labelMaker(f);}
-        text.text = storylet.text;
+        if (textOnHover) text.text = storylet.text;
         //text.text += elements;
+        storylet.gameObject.GetComponent<Animation>().smoothScale(107f, 0.5f);
     }
 
 
 
-    public void storyletHoverExit() {
-        text.text = "";
+    public void storyletHoverExit(Storylet storylet) {
+        if (textOnHover) text.text = "";
+        storylet.gameObject.GetComponent<Animation>().smoothScale(97f, 0.5f);
     }
 
 

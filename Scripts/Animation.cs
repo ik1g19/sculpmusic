@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-
-    public float scaleDuration;
-
-
-
     static public IEnumerator smoothStep(System.Action<Vector3> set, Vector3 start, Vector3 destination, float duration) {
         float timeElapsed = 0.0f;
 
@@ -43,17 +38,17 @@ public class Animation : MonoBehaviour
 
 
 
-    public void smoothScale(float scale) {
+    public void smoothScale(float scale, float duration) {
         Vector3 scaleFrom = transform.localScale;
         Vector3 scaleTo = new Vector3(scale, scale, 1f);
-        StartCoroutine(  Animation.smoothStep((x) => transform.localScale = x, scaleFrom, scaleTo, scaleDuration) );
+        StartCoroutine(  Animation.smoothStep((x) => transform.localScale = x, scaleFrom, scaleTo, duration) );
     }
 
 
 
-    public void smoothScale(float from, float to) {
+    public void smoothScale(float from, float to, float duration) {
         Vector3 scaleFrom = new Vector3(from, from, 1f);
         Vector3 scaleTo = new Vector3(to, to, 1f);
-        StartCoroutine(  Animation.smoothStep((x) => transform.localScale = x, scaleFrom, scaleTo, scaleDuration) );
+        StartCoroutine(  Animation.smoothStep((x) => transform.localScale = x, scaleFrom, scaleTo, duration) );
     }
 }

@@ -42,7 +42,7 @@ public class TapePlayer : MonoBehaviour
 
         running = StartCoroutine(playTapes());
         srcVolumeStart = audioSrc.volume;
-        StartCoroutine(fadeSrcIn());
+        StartCoroutine(Animation.smoothStep(  (x) => audioSrc.volume = x, 0f, 1f, fadeInDuration  ));
     }
 
 
@@ -97,7 +97,7 @@ public class TapePlayer : MonoBehaviour
 
 
 
-    public void storyletHoverExit() {
+    public void storyletHoverExit(Storylet storylet) {
         StopCoroutine(fadeDemoIn);
 
         demoVolumeStart = demoAudioSrc.volume;
@@ -109,24 +109,5 @@ public class TapePlayer : MonoBehaviour
         fadeToReset = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
                                                                     audioSrc.volume = 1f - demoAudioSrc.volume;},
                                                              demoVolumeStart, 0, crossFadeDuration )  );
-    }
-
-
-
-    IEnumerator fadeSrcIn() {
-        float timeElapsed = 0f;
-
-        while (timeElapsed < fadeInDuration) {
-            float t = timeElapsed / fadeInDuration;
-
-            t = t * t * (3f - 2f * t);
-            audioSrc.volume = Mathf.Lerp(srcVolumeStart, 1, t);
-
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        audioSrc.volume = 1.0f;
     }
 }

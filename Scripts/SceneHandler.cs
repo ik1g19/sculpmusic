@@ -42,8 +42,11 @@ public class SceneHandler : MonoBehaviour
     IEnumerator loadSequence() {
         camera.triggerCameraZoom(1f);
         yield return new WaitForSeconds(camera.zoomDuration);
-        circle.smoothScale(5f);
-        yield return new WaitForSeconds(circle.scaleDuration);
+
+        float scaleDuration = 3f;
+        circle.smoothScale(5f, scaleDuration);
+        yield return new WaitForSeconds(scaleDuration);
+
         SceneManager.LoadScene(scene);
     }
 
@@ -52,8 +55,11 @@ public class SceneHandler : MonoBehaviour
         onMenuLoad.Invoke();
         yield return new WaitForSeconds(camera.zoomDuration);
         Animation storyletCircle = StoryEngine.currentStorylet.gameObject.GetComponent<Animation>();
-        storyletCircle.smoothScale(8f, 0f);
-        yield return new WaitForSeconds(storyletCircle.scaleDuration);
+
+        float scaleDuration = 3f;
+        storyletCircle.smoothScale(8f, 0f, scaleDuration);
+        yield return new WaitForSeconds(scaleDuration);
+
         SceneManager.LoadScene("Menu");
     }
 }

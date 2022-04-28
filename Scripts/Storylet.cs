@@ -11,7 +11,6 @@ public class StoryletEvent : UnityEvent <Storylet> { }
 
 public class Storylet : MonoBehaviour
 {
-    public bool textOnHover;
     public bool demoOnHover;
 
     public SpriteRenderer sprtRenderer;
@@ -47,7 +46,7 @@ public class Storylet : MonoBehaviour
     [HideInInspector]
     public StoryletEvent onHoverEnter;
     [HideInInspector]
-    public UnityEvent onHoverExit;
+    public StoryletEvent onHoverExit;
 
 
     void Start()
@@ -60,10 +59,10 @@ public class Storylet : MonoBehaviour
         onStoryletClick.AddListener(interactionEngine.updateSelectedStorylet);
         onStoryletClick.AddListener(presentationEngine.storyletClicked);
 
-        if (textOnHover) onHoverEnter.AddListener(presentationEngine.storyletHoverEnter);
+        onHoverEnter.AddListener(presentationEngine.storyletHoverEnter);
         if (demoOnHover) onHoverEnter.AddListener(tapePlayer.storyletHoverEnter);
 
-        if (textOnHover) onHoverExit.AddListener(presentationEngine.storyletHoverExit);
+        onHoverExit.AddListener(presentationEngine.storyletHoverExit);
         if (demoOnHover) onHoverExit.AddListener(tapePlayer.storyletHoverExit);
 
         sceneHandler.onMenuLoad.AddListener(hideLine);
@@ -118,7 +117,7 @@ public class Storylet : MonoBehaviour
 
 
     private void OnMouseExit() {
-        if (available) onHoverExit.Invoke();
+        if (available) onHoverExit.Invoke(this);
     }
 
 
