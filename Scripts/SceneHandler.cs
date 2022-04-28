@@ -9,13 +9,22 @@ public class SceneHandler : MonoBehaviour
     public CameraMovement camera;
     public Animation circle;
     private string scene;
+    public GameObject menuButton;
 
+    [HideInInspector]
     public UnityEvent onMenuLoad;
 
 
 
     void Start() {
         camera.triggerCameraZoom(1f,250f);
+        if (menuButton != null) StartCoroutine(toggleMenuButton());
+    }
+
+    IEnumerator toggleMenuButton() {
+        yield return new WaitForSeconds(camera.zoomDuration);
+        yield return new WaitForSeconds(0.7f);
+        menuButton.SetActive(true);
     }
 
 

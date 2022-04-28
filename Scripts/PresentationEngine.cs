@@ -35,7 +35,10 @@ public class PresentationEngine : MonoBehaviour
 
 
     public void storyletHoverEnter(Storylet storylet) {
+        //string elements = "\nFeatures:\n";
+        //foreach (Flags f in storylet.effects.toAdd) {elements += FlagHandling.labelMaker(f);}
         text.text = storylet.text;
+        //text.text += elements;
     }
 
 
@@ -63,7 +66,6 @@ public class PresentationEngine : MonoBehaviour
         tapeEndUpdateInterfaceCircle();
 
         cameraPan.Invoke(StoryEngine.currentStorylet.transform.position);
-        Debug.Log("test");
     }
 
 
