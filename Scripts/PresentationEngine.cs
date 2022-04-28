@@ -63,6 +63,7 @@ public class PresentationEngine : MonoBehaviour
         tapeEndUpdateInterfaceCircle();
 
         cameraPan.Invoke(StoryEngine.currentStorylet.transform.position);
+        Debug.Log("test");
     }
 
 

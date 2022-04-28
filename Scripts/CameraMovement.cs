@@ -11,16 +11,9 @@ public class CameraMovement : MonoBehaviour
 
 
 
-    void Start() {
-        Storylet startingStorylet = StoryEngine.currentStorylet;
-        if (startingStorylet != null) camera.transform.position = startingStorylet.gameObject.transform.position - new Vector3(0,0,10);
-    }
-
-
-
     public void triggerCameraPan(Vector3 pos) {
         pos -= new Vector3(0,0,10);
-        StartCoroutine(  Animation.smoothStep((x) => transform.position = x, transform.position, pos, panDuration)  );
+        StartCoroutine(  Animation.smoothStep((x) => camera.transform.position = x, camera.transform.position, pos, panDuration)  );
     }
 
 

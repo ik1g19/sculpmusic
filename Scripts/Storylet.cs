@@ -31,12 +31,16 @@ public class Storylet : MonoBehaviour
 
     private InteractionEngine interactionEngine;
 
+    private SceneHandler sceneHandler;
+
     
     public int level;
     public List<int> permittedLevels;
 
     public List<Guard> guards;
     public Effects effects;
+
+    public float hideLineDuration;
 
     [HideInInspector]
     public StoryletEvent onStoryletClick;
@@ -51,6 +55,7 @@ public class Storylet : MonoBehaviour
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
         presentationEngine = GameObject.FindWithTag("PresentationEngine").GetComponent<PresentationEngine>();
         interactionEngine = GameObject.FindWithTag("InteractionEngine").GetComponent<InteractionEngine>();
+        sceneHandler = GameObject.FindWithTag("SceneHandler").GetComponent<SceneHandler>();
 
         onStoryletClick.AddListener(interactionEngine.updateSelectedStorylet);
         onStoryletClick.AddListener(presentationEngine.storyletClicked);
@@ -60,6 +65,8 @@ public class Storylet : MonoBehaviour
 
         if (textOnHover) onHoverExit.AddListener(presentationEngine.storyletHoverExit);
         if (demoOnHover) onHoverExit.AddListener(tapePlayer.storyletHoverExit);
+
+        sceneHandler.onMenuLoad.AddListener(hideLine);
 
         if (startingStorylet) {
             StoryEngine.selectedStorylet = this;
@@ -132,5 +139,14 @@ public class Storylet : MonoBehaviour
         }
 
         return avlbl;
+    }
+
+
+
+    public void hideLine() {
+        if (available) {
+            LineRenderer lr = GetComponent<LineRenderer>();
+            StartCoroutine(Animation.smoothStep(  (x) => lr.SetPosition(1, x), lr.GetPosition(1), transform.position, hideLineDuration  ));
+        }
     }
 }

@@ -88,7 +88,10 @@ public class TapePlayer : MonoBehaviour
         play(demoAudioSrc, storylet.tape);
         demoAudioSrc.time = audioSrc.time;
 
-        fadeDemoIn = StartCoroutine(fadeDemo());
+        //fadeDemoIn = StartCoroutine(fadeDemo());
+        fadeDemoIn = StartCoroutine(  Animation.smoothStep( (x) => {demoAudioSrc.volume = x; 
+                                                                    audioSrc.volume = 1f - demoAudioSrc.volume;},
+                                                            demoVolumeStart, 1, crossFadeDuration )  );
 
         lastHovered = storylet;
     }

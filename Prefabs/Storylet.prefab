@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3793741469139056741}
   - component: {fileID: -740352585659633489}
   - component: {fileID: 589248731518009442}
+  - component: {fileID: 679117281032528693}
   m_Layer: 0
   m_Name: Storylet
   m_TagString: Storylet
@@ -120,6 +121,7 @@ MonoBehaviour:
   effects:
     toAdd: 
     toRemove: 
+  hideLineDuration: 0.75
   onStoryletClick:
     m_PersistentCalls:
       m_Calls: []
@@ -251,6 +253,19 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &679117281032528693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967756106286420592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe2fcc8cecfc7249adac2f65bc1c00e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleDuration: 3
 --- !u!1 &6848979596349524790
 GameObject:
   m_ObjectHideFlags: 0
