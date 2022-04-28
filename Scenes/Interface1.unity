@@ -986,7 +986,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1059,21 +1058,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f22c086e4873e4f96e3f4948ba02ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RippleMaterial: {fileID: 2100000, guid: 7167a8ca4569abb478a6708012f2fbec, type: 2}
-  MaxAmount: 7.8
-  Friction: 0.991
 --- !u!1 &537087433
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,6 +3630,7 @@ MonoBehaviour:
   tapePlayer: {fileID: 1727854514}
   circle: {fileID: 0}
   menuButton: {fileID: 1015022883}
+  timer: {fileID: 0}
   onMenuLoad:
     m_PersistentCalls:
       m_Calls: []
