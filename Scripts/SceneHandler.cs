@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-    public Camera camera;
+    public CameraMovement camera;
     private float toWait;
     
-    void Start() {toWait = camera.GetComponent<CameraMovement>().zoomDuration;}
+    void Start() {toWait = camera.zoomDuration;}
 
     public void loadScene(string scene) { StartCoroutine(pauseThenLoad(scene)); }
 

@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 439835874}
+      - m_Target: {fileID: 1290708793}
         m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
         m_MethodName: triggerCameraZoom
         m_Mode: 4
@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 439835873}
   - component: {fileID: 439835872}
   - component: {fileID: 439835871}
-  - component: {fileID: 439835874}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -352,21 +351,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &439835874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 439835870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21a2f752f7f05b4394f66d4b1a1d93f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  panDuration: 3
-  zoomDuration: 3
 --- !u!1 &900852839
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea8ca1d6120fba48984df5821c9d373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 439835872}
+  camera: {fileID: 1290708793}
 --- !u!4 &900852841
 Transform:
   m_ObjectHideFlags: 0
@@ -474,7 +458,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 439835874}
+      - m_Target: {fileID: 1290708793}
         m_TargetAssemblyTypeName: CameraMovement, Assembly-CSharp
         m_MethodName: triggerCameraZoom
         m_Mode: 4
@@ -635,6 +619,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256915357}
   m_CullTransparentMesh: 1
+--- !u!1 &1290708792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290708794}
+  - component: {fileID: 1290708793}
+  m_Layer: 0
+  m_Name: CameraHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1290708793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290708792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21a2f752f7f05b4394f66d4b1a1d93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 439835872}
+  panDuration: 1.52
+  zoomDuration: 3
+--- !u!4 &1290708794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290708792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 691.744, y: 184.55252, z: -539.6898}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512587396
 GameObject:
   m_ObjectHideFlags: 0

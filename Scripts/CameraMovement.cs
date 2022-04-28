@@ -20,12 +20,18 @@ public class CameraMovement : MonoBehaviour
 
     public void triggerCameraPan(Vector3 pos) {
         pos -= new Vector3(0,0,10);
-        StartCoroutine(Animation.smoothStep((x) => transform.position = x, transform.position, pos, panDuration));
+        StartCoroutine(  Animation.smoothStep((x) => transform.position = x, transform.position, pos, panDuration)  );
     }
 
 
 
     public void triggerCameraZoom(float size1, float size2) {
         StartCoroutine(  Animation.smoothStep((x) => camera.orthographicSize = x, size1, size2, zoomDuration)  );
+    }
+
+
+
+    public void triggerCameraZoom(float size) {
+        StartCoroutine(  Animation.smoothStep((x) => camera.orthographicSize = x, camera.orthographicSize, size, zoomDuration)  );
     }
 }
