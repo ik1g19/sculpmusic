@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.Events;
 
 public class StoryEngine : MonoBehaviour
 {
     private GameObject prefab;
     private StoryCollection sCollection;
     [SerializeField]
-    public List<Flags> state;
     public int level = 0;
     private TapePlayer tapePlayer;
     //private Text stateText;
 
+    public static List<Flags> storyState;
     public static Storylet currentStorylet; 
     public static Storylet selectedStorylet;
 
@@ -25,6 +26,8 @@ public class StoryEngine : MonoBehaviour
         sCollection = new StoryCollection(GameObject.FindGameObjectsWithTag("Storylet"));
 
         tapePlayer = GameObject.FindWithTag("TapePlayer").GetComponent<TapePlayer>();
+
+        storyState = new List<Flags>();
     }
 
 
@@ -37,12 +40,12 @@ public class StoryEngine : MonoBehaviour
         
         Effects effects = selectedStorylet.effects;
 
-        state.AddRange(effects.toAdd);
-        state = state.Distinct().ToList();
+        storyState.AddRange(effects.toAdd);
+        storyState = storyState.Distinct().ToList();
 
-        effects.toRemove.ForEach(f => state.Remove(f));
+        effects.toRemove.ForEach(f => storyState.Remove(f));
 
-        sCollection.flagAvailableStorylets(level, state);
+        sCollection.flagAvailableStorylets(level, storyState);
 
         StoryEngine.selectedStorylet.available = true;
 

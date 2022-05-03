@@ -47,7 +47,7 @@ public class StoryCollection
     public void flagAvailableStorylets(int level, List<Flags> state) {
         storylets.ForEach(s => s.GetComponent<Storylet>().available = false);
 
-        storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(level, state)).ToList()
+        storylets.Where(s => s.GetComponent<Storylet>().checkAvailable(StoryEngine.selectedStorylet, state)).ToList()
                  .ForEach(s => s.GetComponent<Storylet>().available = true);
     }
 

@@ -8,6 +8,8 @@ using System.Linq;
 public class Guard
 {
     public List<Flags> flags;
+    //public bool satisfied {get; set;}
+    //public string actionDescription;
 
     public bool isSatisfied(List<Flags> state) {
         return flags.Select(  f => state.Contains(f)  ).ToList()

@@ -39,7 +39,7 @@ public class PresentationEngine : MonoBehaviour
     public void storyletHoverEnter(Storylet storylet) {
         //string elements = "\nFeatures:\n";
         //foreach (Flags f in storylet.effects.toAdd) {elements += FlagHandling.labelMaker(f);}
-        if (textOnHover) text.text = storylet.text;
+        if (textOnHover) text.text = storylet.description;
         //text.text += elements;
         storylet.gameObject.GetComponent<Animation>().smoothScale(107f, 0.5f);
     }

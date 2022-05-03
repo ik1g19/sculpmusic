@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.Events;
 using System;
+using System.Xml;
 
 [Serializable]
 public class StoryletEvent : UnityEvent <Storylet> { }
@@ -18,7 +19,8 @@ public class Storylet : MonoBehaviour
     public Sprite availableSprt;
     public Sprite currentSprt;
     public Sprite selectedSprt;
-    public string text;
+
+    public string description;
 
     public bool available {get; set;}
     public bool startingStorylet;
@@ -34,7 +36,7 @@ public class Storylet : MonoBehaviour
 
     
     public int level;
-    public List<int> permittedLevels;
+    public List<int> visibleLevels;
 
     public List<Guard> guards;
     public Effects effects;
@@ -72,6 +74,18 @@ public class Storylet : MonoBehaviour
             StoryEngine.currentStorylet = this;
             onStoryletClick.Invoke(this);
         }
+        // else {
+        //     string path = "StoryletDescriptions/" + gameObject.name;
+        //     int guardNum = 0;
+        //     foreach (Guard guard in guards) {
+        //         string guardfilepath = path + "_" + guardNum;
+
+        //         TextAsset file = (TextAsset)Resources.Load(guardfilepath);
+        //         guard.actionDescription = file.text;
+
+        //         guardNum++;
+        //     }
+        // }
     }
 
 
@@ -122,19 +136,24 @@ public class Storylet : MonoBehaviour
 
 
 
-    public bool checkAvailable(int level, List<Flags> state) {
-        if (guards.Count == 0) return permittedLevels.Contains(level);
+    public bool checkAvailable(Storylet from, List<Flags> storyState) {
+        if (guards.Count == 0) return from.visibleLevels.Contains(level);
 
         bool avlbl = false;
 
+        //int guardNum = 0;
         foreach (Guard guard in guards) {
-            bool satisfied =  guard.isSatisfied(state);
+            bool satisfied =  guard.isSatisfied(storyState);
 
             //Debug.Log(satisfied);
-            satisfied = satisfied && permittedLevels.Contains(level);
+            satisfied = satisfied && from.visibleLevels.Contains(level);
             //Debug.Log(permittedLevels.Contains(level));
+            //if (gameObject.name.Equals("introdistortion")) Debug.Log(from.gameObject.name);
+            //if (satisfied && description.Equals("")) description = guard.actionDescription;
 
             avlbl = avlbl || satisfied;
+
+            //guardNum++;
         }
 
         return avlbl;

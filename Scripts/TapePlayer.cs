@@ -24,6 +24,7 @@ public class TapePlayer : MonoBehaviour
     public UnityEvent onTapePlayerStart;
     public UnityEvent onTimeOut;
     public UnityEvent onTapeEnd;
+    public UnityEvent onSongEnd;
 
     private Coroutine running;
     private float time;
@@ -49,7 +50,7 @@ public class TapePlayer : MonoBehaviour
 
 
     private IEnumerator playTapes() {
-        while (true) {            
+        while (!StoryEngine.storyState.Contains(Flags.end)) {            
             play(audioSrc, StoryEngine.currentStorylet.tape);
             if (lastHovered != null) play(demoAudioSrc, lastHovered.tape);
             
@@ -62,6 +63,13 @@ public class TapePlayer : MonoBehaviour
             if (audioSrc.isPlaying) audioSrc.Stop();
             if (demoAudioSrc.isPlaying) demoAudioSrc.Stop();
         }
+
+        play(audioSrc, StoryEngine.currentStorylet.tape);
+        if (lastHovered != null) play(demoAudioSrc, lastHovered.tape);
+        
+        yield return new WaitForSeconds(StoryEngine.currentStorylet.tape.length-0.05f);
+        
+        onSongEnd.Invoke();
     }
 
 
